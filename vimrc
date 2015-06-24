@@ -1,12 +1,12 @@
 "
 " ~/.vimrc
 "
+
+set nocompatible
+
 execute pathogen#infect()
 "source ~/.vim/noarrows.vim
 source ~/.vim/mappings.vim
-"
-" GENERAL
-"
 
 filetype plugin on
 filetype indent on
@@ -16,11 +16,11 @@ set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8
 
 set ruler
 set showcmd
+set laststatus=2
 set autochdir
-set nocompatible
 set autoread
 set hid
-set history=512
+set history=128
 
 set pastetoggle=<F2>
 set clipboard=unnamed
@@ -39,8 +39,8 @@ set wildmenu
 set wildmode=list:longest,full
 set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
 
-set backupdir=$HOME/.vimbackup
-set directory=$HOME/.vimswap
+set backupdir=$HOME/.vim/backup
+set directory=$HOME/.vim/swap
 
 "if has('mouse')
 "  set mouse=a
@@ -88,13 +88,8 @@ endif
 set t_Co=256
 color molokai
 let g:molokai_original = 1
-"highlight ColorColumn ctermbg=Gray
-"set colorcolumn=81
-"set foldcolumn=1
-"set background=dark
 set cursorline
 set tw=79
-set colorcolumn=80
 let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
