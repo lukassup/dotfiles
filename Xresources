@@ -38,6 +38,7 @@ Xft.hintstyle:  hintslight
 
 ! xterm
 
+*xterm*termName: xterm-256color
 *xterm*faceName: Source Code Pro
 *xterm*faceSize: 12
 *xterm*VT100.geometry:     96x20
@@ -53,3 +54,5 @@ Xft.hintstyle:  hintslight
 *xterm*jumpScroll:         true
 *xterm*multiScroll:        true
 *xterm*toolBar:            false
+
+URxvt*termName: rxvt-unicode

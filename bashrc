@@ -36,4 +36,4 @@ fi
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR="vim"
-export TERM="xterm-256color"
+#export TERM="xterm-256color"
