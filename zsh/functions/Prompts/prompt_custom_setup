@@ -1,7 +1,14 @@
 # My custom zsh prompt
 prompt_custom_setup () {
+
   RPROMPT='%F{black}%B%T%b%f'
-  PS1='%(!.%F{red}.%F{cyan})%n%f:%b%F{yellow}%1~%f%# '
+
+  if [[ -z "$SSH_CLIENT" ]]; then
+    PS1='%(!.%F{red}.%F{cyan})%n%f:%b%F{yellow}%1~%f%# '
+  else
+    PS1='%(!.%F{red}.%F{cyan})%n%f@%M:%b%F{yellow}%1~%f%# '
+  fi
+ 
   PS2="> "
 
   prompt_opts=( cr percent )
