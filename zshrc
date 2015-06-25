@@ -18,12 +18,6 @@ colors
 
 prompt custom
 
-#case $TERM in
-#    xterm*)
-#        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
-#        ;;
-#esac
-
 bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word
 
@@ -78,6 +72,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+alias cp='cp -iv' # safe+verbose copy
+alias mv='mv -iv' # safe+verbose move
+alias rm='rm -Iv' # safe+verbose delete (prompt once)
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'

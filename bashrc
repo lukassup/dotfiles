@@ -20,6 +20,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
+alias cp='cp -iv' # safe+verbose copy
+alias mv='mv -iv' # safe+verbose move
+alias rm='rm -Iv' # safe+verbose delete (prompt once)
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -27,13 +30,12 @@ alias pacman='pacman --color=auto'
 alias sudo='sudo '
 
 if [ ${UID} -eq 0 ]; then
-        PS1='\[\e[0;31m\]\u\[\e[m\]:\[\e[1;34m\]\w\[\e[m\] \[\e[0;31m\]\$ \[\e[m\]'
+        PS1='\[\e[0;31m\]\u\[\e[m\]:\[\e[0;33m\]\w\[\e[m\]# '
 else
-        PS1='\[\e[0;36m\]\u\[\e[m\]:\[\e[1;34m\]\W\[\e[m\] \[\e[1;32m\]\$\[\e[m\] '
+        PS1='\[\e[0;36m\]\u\[\e[m\]:\[\e[0;33m\]\W\[\e[m\]$ '
 fi
 
 # pkgfile command lookup
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR="vim"
-#export TERM="xterm-256color"
