@@ -9,6 +9,7 @@ setopt appendhistory autocd NO_BEEP
 bindkey -e
 
 zstyle :compinstall filename '/home/lukas/.zshrc'
+zstyle ':completion:*' insert-tab false
 
 autoload -Uz compinit promptinit colors
 compinit
@@ -16,6 +17,12 @@ promptinit
 colors
 
 prompt custom
+
+#case $TERM in
+#    xterm*)
+#        precmd () {print -Pn "\e]0;%n@%m: %~\a"}
+#        ;;
+#esac
 
 bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word

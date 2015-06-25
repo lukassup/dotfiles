@@ -1,9 +1,1 @@
-# My custom zsh prompt
-prompt_custom_setup () {
-  PS1='%F{cyan}%n%f:%b%F{yellow}%1~%f%# '
-  PS2="> "
-
-  prompt_opts=( cr percent )
-}
-
-prompt_custom_setup "$@"
+/usr/share/zsh/functions/Prompts/prompt_custom_setup
