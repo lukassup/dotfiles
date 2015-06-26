@@ -4,8 +4,6 @@ command Q q! " :Q=:q!
 " Sudo save
 command W w !sudo tee % > /dev/null
 
-set pastetoggle=<F2>
-
 " Toggle highlight
 nnoremap <F3> :set hlsearch!<CR>
 
@@ -22,3 +20,4 @@ noremap <C-Z> :update<CR>
 inoremap <C-Z> <C-O>:update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
 
+nnoremap <Space> /
