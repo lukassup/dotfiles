@@ -81,7 +81,7 @@ alias l='ls -CF'
 alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
-#alias yup='yaourt -Syua'   # if using yaourt
+alias yup='yaourt -Syua'   # if using yaourt
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 

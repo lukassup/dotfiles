@@ -29,7 +29,7 @@ alias l='ls -CF'
 alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
-#alias yup='yaourt -Syua'   # if using yaourt
+alias yup='yaourt -Syua'   # if using yaourt
 
 if [ ${UID} -eq 0 ]; then
         PS1='\[\e[0;31m\]\u\[\e[m\]:\[\e[0;33m\]\w\[\e[m\]# '
