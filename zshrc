@@ -75,6 +75,9 @@ fi
 alias cp='cp -iv' # safe+verbose copy
 alias mv='mv -iv' # safe+verbose move
 alias rm='rm -Iv' # safe+verbose delete (prompt once)
+alias rmdir='rmdir -v'
+alias mkdir='mkdir -v'
+alias ln='ln -v'
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
@@ -82,7 +85,23 @@ alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
 alias yup='yaourt -Syua'   # if using yaourt
+alias root='root -l'
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 export EDITOR="vim"
+
+export ROOTSYS=/usr                                                                                                                                           
+
+if [ -z "${LD_LIBRARY_PATH}" ]; then
+   LD_LIBRARY_PATH=/usr/lib/root; export LD_LIBRARY_PATH       # Linux, ELF HP-UX
+else
+   LD_LIBRARY_PATH=/usr/lib/root:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
+fi
+
+if [ -z "${PYTHONPATH}" ]; then
+   PYTHONPATH=/usr/lib/root; export PYTHONPATH
+else
+   PYTHONPATH=/usr/lib/root:$PYTHONPATH; export PYTHONPATH
+fi
+
