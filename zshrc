@@ -63,8 +63,8 @@ zle -N zle-line-finish
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto --group-directories-first'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -81,6 +81,7 @@ alias ln='ln -v'
 alias ll='ls -AlF'
 alias la='ls -A'
 alias l='ls -CF'
+alias vi='vim'
 alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
