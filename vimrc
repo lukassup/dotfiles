@@ -13,7 +13,7 @@ set fileformats=unix,dos,mac " Use UNIX as main file format
 set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swap
-set history=200
+set history=256
 set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
 
 set autochdir   " Auto cd to current file
@@ -51,11 +51,14 @@ set expandtab
 "set ai     " Auto indent (indent plugin does this)
 "set si     " Smart indent (indent plugin does this)
 
-set nowrap
-"set linebreak
-"set nolist
-set fo-=t
-"set wm=0
+"
+" Wrapping
+"
+
+set wrap
+set linebreak
+set nolist
+set textwidth=0
 
 "
 " *** Syntax
@@ -85,7 +88,7 @@ endif
 set t_Co=256
 colorscheme jellybeans
 set cursorline
-set tw=79
+"set tw=79
 let &colorcolumn="80,".join(range(120,999),",")
 highlight ColorColumn ctermbg=235 guibg=#2c2d27
 
