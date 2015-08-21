@@ -78,7 +78,8 @@ alias rm='rm -Iv' # safe+verbose delete (prompt once)
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -v'
 alias ln='ln -v'
-alias ll='ls -AlF'
+alias ll='ls -lAhF --time-style=+'
+alias lll='ls -lAhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias vi='vim'
@@ -87,6 +88,8 @@ alias sudo='sudo '
 alias pup='sudo pacman -Syu'
 alias yup='yaourt -Syua'   # if using yaourt
 alias root='root -l'
+
+umask 027
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 

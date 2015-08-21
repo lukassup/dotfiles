@@ -26,7 +26,7 @@ alias rm='rm -Iv' # safe+verbose delete (prompt once)
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -v'
 alias ln='ln -v'
-alias ll='ls -AlF'
+alias ll='ls -lAhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias pacman='pacman --color=auto'
@@ -35,6 +35,8 @@ alias vi='vim'
 alias pup='sudo pacman -Syu'
 alias yup='yaourt -Syua'   # if using yaourt
 alias root='root -l'
+
+umask 027
 
 if [ ${UID} -eq 0 ]; then
         PS1='\[\e[0;31m\]\u\[\e[m\]:\[\e[0;33m\]\w\[\e[m\]# '
