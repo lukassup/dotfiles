@@ -34,7 +34,6 @@ alias sudo='sudo '
 alias vi='vim'
 alias pup='sudo pacman -Syu'
 alias yup='yaourt -Syua'   # if using yaourt
-alias root='root -l'
 
 umask 027
 
@@ -48,18 +47,4 @@ fi
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR="vim"
-
-export ROOTSYS=/usr                                                                                                                                           
-
-if [ -z "${LD_LIBRARY_PATH}" ]; then
-   LD_LIBRARY_PATH=/usr/lib/root; export LD_LIBRARY_PATH       # Linux, ELF HP-UX
-else
-   LD_LIBRARY_PATH=/usr/lib/root:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
-fi
-
-if [ -z "${PYTHONPATH}" ]; then
-   PYTHONPATH=/usr/lib/root; export PYTHONPATH
-else
-   PYTHONPATH=/usr/lib/root:$PYTHONPATH; export PYTHONPATH
-fi
 

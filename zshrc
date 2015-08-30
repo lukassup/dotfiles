@@ -2,13 +2,13 @@
 # ~/.zshrc
 #
 
-HISTFILE=~/.zsh_history
+HISTFILE=$HOME/.zsh_history
 HISTSIZE=1024
 SAVEHIST=1024
 setopt appendhistory autocd NO_BEEP
 bindkey -e
 
-zstyle :compinstall filename '/home/lukas/.zshrc'
+zstyle :compinstall filename '$HOME/.zshrc'
 zstyle ':completion:*' insert-tab false
 
 autoload -Uz compinit promptinit colors
@@ -87,25 +87,13 @@ alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
 alias yup='yaourt -Syua'   # if using yaourt
-alias root='root -l'
+alias vimrc='$EDITOR $HOME/.vimrc'
+alias bashrc='$EDITOR $HOME/.bashrc'
+alias zshrc='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
 
 umask 027
 
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 export EDITOR="vim"
-
-export ROOTSYS=/usr                                                                                                                                           
-
-if [ -z "${LD_LIBRARY_PATH}" ]; then
-   LD_LIBRARY_PATH=/usr/lib/root; export LD_LIBRARY_PATH       # Linux, ELF HP-UX
-else
-   LD_LIBRARY_PATH=/usr/lib/root:$LD_LIBRARY_PATH; export LD_LIBRARY_PATH
-fi
-
-if [ -z "${PYTHONPATH}" ]; then
-   PYTHONPATH=/usr/lib/root; export PYTHONPATH
-else
-   PYTHONPATH=/usr/lib/root:$PYTHONPATH; export PYTHONPATH
-fi
 
