@@ -15,7 +15,6 @@ set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swap
 set history=256
 set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
-
 set autochdir   " Auto cd to current file
 set autoread    " Auto read external changes
 
@@ -32,24 +31,16 @@ set visualbell  " No sounds
 set backspace=eol,start,indent " Backspace deletes anything
 set whichwrap+=<,>,h,l,[,]  " Move cursor through anything
 set shortmess+=I    " Don't display intro message
-"if has('mouse')
-"  set mouse=a
-"endif
-set pastetoggle=<F2>
-set clipboard=unnamed
 
 "
 " *** Tabs and indents
 "
 
-filetype indent on
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set smarttab
 set expandtab
-"set ai     " Auto indent (indent plugin does this)
-"set si     " Smart indent (indent plugin does this)
 
 "
 " Wrapping
@@ -64,16 +55,14 @@ set textwidth=0
 " *** Syntax
 "
 
-filetype plugin on  " Detect syntax by file extension
-syntax on   " Syntax highlighting
+syntax on       " Syntax highlighting
 set showmatch   " Briefly display bracket pairs
-set mat=2   " Display matching brackets for 200ms
+set mat=2       " Display matching brackets for 200ms
 "set mps+=<:>   " Match  angle brackets
 
 "
 " *** Spelling
 "
-
 
 " Use english for spellchecking, but don't spellcheck by default
 if version >= 700
@@ -86,23 +75,28 @@ endif
 "
 
 set t_Co=256
-colorscheme jellybeans
+"colorscheme jellybeans
 set cursorline
-"set tw=79
 let &colorcolumn="80,".join(range(120,999),",")
-highlight ColorColumn ctermbg=235 guibg=#2c2d27
+highlight ColorColumn ctermbg=7 guibg=#E8E4CF
+highlight CursorLine term=NONE cterm=NONE ctermbg=7 guibg=#E8E4CF
 
-set statusline=%t       "tail of the filename
-set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
-set statusline+=%{&ff}] "file format
-set statusline+=%h      "help file flag
-set statusline+=%m      "modified flag
-set statusline+=%r      "read only flag
-set statusline+=%y      "filetype
-set statusline+=%=      "left/right separator
-set statusline+=%c,     "cursor column
-set statusline+=%l/%L   "cursor line/total lines
-set statusline+=\ %P    "percent through file
+"
+" *** Status line
+"
+
+set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+"filename tail
+"file encoding
+"file format
+"help file flag
+"modified flag
+"read only flag
+"filetype
+"left/right separator
+"cursor column
+"cursor line/total lines
+"percent through file
 
 "
 " *** Search
@@ -113,4 +107,49 @@ set ignorecase  " Case insensitive search
 set smartcase   " Unless search term is in specific case
 set gdefault    " g/ flag for replace by default
 set hlsearch!   " Don't highlight anything until searched
+
+"
+" *** Advanced
+"
+
+if has('mouse')
+  set mouse=a
+endif
+
+" Use X clipboard if supported
+if has('xterm_clipboard')
+    set clipboard=unnamedplus
+elseif has('clipboard')
+    set clipboard=unnamed
+endif
+
+set pastetoggle=<F2>
+
+" Only do this part when compiled with support for autocommands.
+if has("autocmd")
+
+  " Enable file type detection.
+  " Use the default filetype settings, so that mail gets 'tw' set to 72,
+  " 'cindent' is on in C files, etc.
+  " Also load indent files, to automatically do language-dependent indenting.
+  filetype plugin indent on
+
+  " Put these in an autocmd group, so that we can delete them easily.
+  augroup vimrcEx
+  au!
+
+  " For all text files set 'textwidth' to 78 characters.
+  autocmd FileType text setlocal textwidth=78
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  augroup END
+
+endif " has("autocmd")
 
