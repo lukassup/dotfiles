@@ -75,11 +75,14 @@ endif
 "
 
 set t_Co=256
+"set cursorline
+set background=dark
 "colorscheme jellybeans
-set cursorline
-let &colorcolumn="80,".join(range(120,999),",")
-highlight ColorColumn ctermbg=7 guibg=#E8E4CF
-highlight CursorLine term=NONE cterm=NONE ctermbg=7 guibg=#E8E4CF
+"let &colorcolumn="80,".join(range(120,999),",")
+"highlight ColorColumn ctermbg=DarkGrey guibg=DarkGrey
+"highlight CursorLine term=NONE cterm=NONE ctermbg=DarkGrey guibg=DarkGrey
+highlight LineNr term=NONE cterm=NONE ctermfg=DarkGrey
+highlight CursorLineNr term=bold cterm=NONE ctermfg=White
 
 "
 " *** Status line
@@ -113,7 +116,7 @@ set hlsearch!   " Don't highlight anything until searched
 "
 
 if has('mouse')
-  set mouse=a
+    set mouse=a
 endif
 
 " Use X clipboard if supported
@@ -128,28 +131,28 @@ set pastetoggle=<F2>
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        autocmd BufReadPost *
+                    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
 
-  augroup END
+    augroup END
 
 endif " has("autocmd")
 

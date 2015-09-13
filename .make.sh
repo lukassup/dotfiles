@@ -10,8 +10,8 @@
 
 ## Variables
 
-dir=~/dotfiles           # dotfiles directory
-olddir=~/dotfiles_old    # old dotfiles backup directory
+dir=$HOME/dotfiles           # dotfiles directory
+olddir=$HOME/dotfiles_old    # old dotfiles backup directory
 files+=(*)               # get files in the current dir
 declare -a files=("${files[@]/README.md/}")  # skip README.md
 

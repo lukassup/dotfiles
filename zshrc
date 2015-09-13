@@ -72,9 +72,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias cp='cp -iv' # safe+verbose copy
-alias mv='mv -iv' # safe+verbose move
-alias rm='rm -Iv' # safe+verbose delete (prompt once)
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -v'
 alias ln='ln -v'
@@ -86,14 +86,18 @@ alias vi='vim'
 alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias pup='sudo pacman -Syu'
-alias yup='yaourt -Syua'   # if using yaourt
+alias yup='yaourt -Syua'
 alias vimrc='$EDITOR $HOME/.vimrc'
 alias bashrc='$EDITOR $HOME/.bashrc'
 alias zshrc='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
 
-umask 027
-
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 export EDITOR="vim"
+export BROWSER="firefox"
+
+# Wine settings
+export WINEPREFIX="$HOME/Wine"
+export WINEARCH="win32"
+export WINEDEBUG="-all"
 

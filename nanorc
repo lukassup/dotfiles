@@ -168,8 +168,8 @@ set wordbounds
 ## This is an example; by default there are no colors.
 set titlecolor brightwhite,black
 set statuscolor brightwhite,black
-set keycolor brightwhite
-set functioncolor brightblack
+set keycolor brightblack
+set functioncolor black
 
 ## Setup of syntax coloring.
 ##

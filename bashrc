@@ -5,6 +5,8 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+shopt -s checkwinsize
+
 alias ls='ls --group-directories-first'
 
 # enable color support of ls and also add handy aliases
@@ -20,22 +22,24 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-alias cp='cp -iv' # safe+verbose copy
-alias mv='mv -iv' # safe+verbose move
-alias rm='rm -Iv' # safe+verbose delete (prompt once)
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -Iv'
 alias rmdir='rmdir -v'
 alias mkdir='mkdir -v'
 alias ln='ln -v'
-alias ll='ls -lAhF'
+alias ll='ls -lAhF --time-style=+'
+alias lll='ls -lAhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias pacman='pacman --color=auto'
 alias sudo='sudo '
 alias vi='vim'
 alias pup='sudo pacman -Syu'
-alias yup='yaourt -Syua'   # if using yaourt
-
-umask 027
+alias yup='yaourt -Syua'
+alias vimrc='$EDITOR $HOME/.vimrc'
+alias bashrc='$EDITOR $HOME/.bashrc && source $HOME/.bashrc'
+alias zshrc='$EDITOR $HOME/.zshrc'
 
 if [ ${UID} -eq 0 ]; then
         PS1='\[\e[0;31m\]\u\[\e[m\]:\[\e[0;33m\]\w\[\e[m\]# '
@@ -47,4 +51,10 @@ fi
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR="vim"
+export BROWSER="firefox"
+
+# Wine settings
+export WINEPREFIX="$HOME/Wine"
+export WINEARCH="win32"
+export WINEDEBUG="-all"
 
