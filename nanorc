@@ -16,7 +16,7 @@ set backupdir "~/.nano/backup"
 # set backwards
 
 ## Use bold text instead of reverse video text.
-# set boldtext
+#set boldtext
 
 ## The characters treated as closing brackets when justifying
 ## paragraphs.  They cannot contain blank characters.  Only closing
@@ -87,7 +87,7 @@ set nowrap
 # set operatingdir ""
 
 ## Remember the cursor position in each file for the next editing session.
-# set poslog
+set poslog
 
 ## Preserve the XON and XOFF keys (^Q and ^S).
 # set preserve
@@ -134,7 +134,7 @@ set softwrap
 
 ## Use this spelling checker instead of the internal one.  This option
 ## does not properly have a default value.
-# set speller "aspell -x -c"
+set speller "aspell -x -c"
 
 ## Allow nano to be suspended.
 set suspend
@@ -166,10 +166,10 @@ set wordbounds
 
 ## Paint the interface elements of nano.
 ## This is an example; by default there are no colors.
-set titlecolor brightwhite,black
+set titlecolor black,brightwhite
 set statuscolor brightwhite,black
-set keycolor brightblack
-set functioncolor black
+set keycolor brightwhite
+set functioncolor brightblack
 
 ## Setup of syntax coloring.
 ##
