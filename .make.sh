@@ -1,39 +1,77 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ##
 # .make.sh
 #
 # This script creates symlinks
-# from the home directory to any
-# desired dotfiles in ~/dotfiles
+# to any dotfiles in $HOME
 ##
 
-## Variables
+# Variable definitions
 
-dir=$HOME/dotfiles           # dotfiles directory
-olddir=$HOME/dotfiles_old    # old dotfiles backup directory
-files+=(*)               # get files in the current dir
-declare -a files=("${files[@]/README.md/}")  # skip README.md
+# The name of your dotfiles directory
+DIR="dotfiles"
+# Absolute path
+ABSDIR="${HOME}/${DIR}"
+# Absolute path for backups
+ABSDIROLD="${ABSDIR}_old"
 
-# create dotfiles_old in homedir
-echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-mkdir -p $olddir
-echo " done."
+cd "${ABSDIR}"
 
-# change to the dotfiles directory
-echo -n "Changing to the $dir directory ..."
-cd $dir
-echo " done."
+# Get files in $ABSDIR
+FILES+=(*)
 
-# Move any existing dotfiles in homedir
-# to $olddir directory, then create
-# symlinks from the homedir to any files
-# in the ~/dotfiles directory specified in $files
+# Exlude list
+EXCLUDE=("README.md" "zsh")
 
-for file in ${files[@]}; do
-#   echo "Moving any existing dotfiles from $HOME to $olddir"
-    mv -v ~/.$file $olddir
-#   echo "Creating symlink to $file in $HOME\."
-    ln -vs $dir/$file ~/.$file
+for item in ${FILES[@]}; do
+    echo -n "'${item}' "
+done
+
+echo -ne "\n\n"
+
+for x in ${!EXCLUDE[@]}; do
+    for y in ${!FILES[@]}; do
+        if [[ "${FILES[y]}" == "${EXCLUDE[x]}" ]]; then
+            echo "Unset: ${FILES[$y]}"
+            unset FILES[y]
+        fi
+    done
+done
+
+for item in ${FILES[@]}; do
+    echo -n "'${item}' "
+done
+
+echo -ne "\n\n"
+
+cd "${HOME}"
+
+# Create $ABSDIROLD in $HOME
+#mkdir -pv "${ABSDIROLD}"
+echo "'${ABSDIROLD}' created for backup."
+echo
+
+# Move any existing dotfiles in $HOME
+# to $ABSDIROLD directory, then create
+# symlinks from $HOME to any files
+# in $ABSDIR directory specified in $FILES.
+
+for FILE in ${FILES[@]}; do
+
+    # Move any existing dotfiles from $HOME to $ABSDIROLD
+    if [[ -e "${HOME}/.${FILE}" ]]; then
+        echo "'${HOME}/.${FILE}' exists"
+        echo "Moving: '.${FILE}' -> '${ABSDIROLD}/.${FILE}'"
+        # echo -n "Moving: "
+        # mv -v ".${FILE}" "${ABSDIROLD}"
+    fi
+
+    # Create symlink to $FILE in $HOME
+    echo "Linking: '.${FILE}' -> '${DIR}/${FILE}'"
+    # echo -n "Linking: "
+    # ln -vs "${DIR}/${FILE}" ".${FILE}"
+    echo
+
 done
 
