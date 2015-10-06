@@ -4,8 +4,6 @@
 
 set nocompatible
 
-execute pathogen#infect()
-
 "source ~/.vim/noarrows.vim
 source ~/.vim/mappings.vim
 
@@ -74,15 +72,14 @@ endif
 " *** Looks
 "
 
-set t_Co=256
-set cursorline
+"set cursorline
 set background=dark
 "colorscheme jellybeans
 "let &colorcolumn="80,".join(range(120,999),",")
 "highlight ColorColumn ctermbg=DarkGrey guibg=DarkGrey
-highlight CursorLine term=NONE cterm=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
+"highlight CursorLine term=NONE cterm=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
 highlight LineNr term=NONE cterm=NONE ctermfg=DarkGrey
-highlight CursorLineNr term=bold cterm=NONE ctermfg=White
+"highlight CursorLineNr term=bold cterm=NONE ctermfg=White
 
 "
 " *** Status line
