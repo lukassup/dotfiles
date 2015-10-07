@@ -5,11 +5,43 @@
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1024
 SAVEHIST=1024
-setopt appendhistory autocd NO_BEEP
+setopt \
+    auto_remove_slash \
+    autocd \
+    complete_aliases \
+    share_history \
+    inc_append_history \
+    hist_reduce_blanks \
+    hist_ignore_all_dups
+unsetopt \
+    hist_ignore_space \
+    hist_beep \
+    list_beep \
+    beep
 bindkey -e
 
 zstyle :compinstall filename '$HOME/.zshrc'
 zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' rehash true
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=00}:${(s.:.)LS_COLORS}")'
+
+# Case insensitive menu completion
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# Group matches and describe.
+zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
 
 autoload -Uz compinit promptinit colors
 compinit
@@ -59,45 +91,18 @@ function zle-line-finish () {
 zle -N zle-line-init
 zle -N zle-line-finish  
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto --group-directories-first'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
+    export TERM=xterm-256color
 fi
 
-# some more ls aliases
-alias cp='cp -iv'
-alias mv='mv -iv'
-alias rm='rm -Iv'
-alias rmdir='rmdir -v'
-alias mkdir='mkdir -v'
-alias ln='ln -v'
-alias ll='ls -lAhF --time-style=+'
-alias lll='ls -lAhF'
-alias la='ls -A'
-alias l='ls -CF'
-alias vi='vim'
-alias pacman='pacman --color=auto'
-alias sudo='sudo '
-alias pup='sudo pacman -Syu'
-alias yup='yaourt -Syua'
-alias vimrc='$EDITOR $HOME/.vimrc'
+# zsh inline syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# pkgfile command lookup
+source /usr/share/doc/pkgfile/command-not-found.zsh
+# Source aliases and user environment vars
+source ${HOME}/.aliases
+
+# More aliases
 alias bashrc='$EDITOR $HOME/.bashrc'
 alias zshrc='$EDITOR $HOME/.zshrc && source $HOME/.zshrc'
-
-source /usr/share/doc/pkgfile/command-not-found.zsh
-
-export EDITOR="vim"
-export BROWSER="firefox"
-
-# Wine settings
-export WINEPREFIX="$HOME/Wine"
-export WINEARCH="win32"
-export WINEDEBUG="-all"
 

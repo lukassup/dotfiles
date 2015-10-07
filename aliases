@@ -1,0 +1,42 @@
+#
+# ~/.env.sh
+#
+# Global aliases
+
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto --group-directories-first'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias cp='cp -iv'
+alias mv='mv -iv'
+alias rm='rm -Iv'
+alias rmdir='rmdir -v'
+alias mkdir='mkdir -v'
+alias ln='ln -v'
+alias ll='ls -lAhF --time-style=+'
+alias lll='ls -lAhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias pacman='pacman --color=auto'
+alias sudo='sudo '
+alias vi='vim'
+alias pup='sudo pacman -Syu'
+alias yup='yaourt -Syua'
+alias vimrc='$EDITOR $HOME/.vimrc'
+
+export EDITOR="vim"
+export PAGER="less -RSC"
+export BROWSER="firefox"
+
+# Wine settings
+export WINEPREFIX="$HOME/Wine"
+export WINEARCH="win32"
+export WINEDEBUG="-all"
+
