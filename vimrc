@@ -43,7 +43,6 @@ set expandtab
 "
 " Wrapping
 "
-
 set wrap
 set linebreak
 set nolist
@@ -72,14 +71,10 @@ endif
 " *** Looks
 "
 
-"set cursorline
-set background=dark
-"colorscheme jellybeans
-"let &colorcolumn="80,".join(range(120,999),",")
-"highlight ColorColumn ctermbg=DarkGrey guibg=DarkGrey
-"highlight CursorLine term=NONE cterm=NONE ctermbg=NONE gui=NONE guifg=NONE guibg=NONE
-highlight LineNr term=NONE cterm=NONE ctermfg=DarkGrey
-"highlight CursorLineNr term=bold cterm=NONE ctermfg=White
+set cursorline
+set t_Co=16 " Use 16 color mode for speedier (WOOSH!) performance
+colorscheme wombat16
+let &colorcolumn="80,".join(range(120,999),",")
 
 "
 " *** Status line

@@ -1,5 +1,5 @@
 set shortmess+=I
-colorscheme jellybeans
+colorscheme wombat256
 set guifont=Office\ Code\ Pro\ 11
 set antialias       " Pretty fonts
 set numberwidth=5   " Line-number margin width

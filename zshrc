@@ -12,7 +12,8 @@ setopt \
     share_history \
     inc_append_history \
     hist_reduce_blanks \
-    hist_ignore_all_dups
+    hist_ignore_all_dups \
+    extended_glob
 unsetopt \
     hist_ignore_space \
     hist_beep \
@@ -23,11 +24,11 @@ bindkey -e
 zstyle :compinstall filename '$HOME/.zshrc'
 zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' rehash true
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=00}:${(s.:.)LS_COLORS}")'
 
 # Case insensitive menu completion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
 # Group matches and describe.
 zstyle ':completion:*:*:*:*:*' menu select
@@ -38,7 +39,7 @@ zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
