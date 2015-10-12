@@ -12,7 +12,7 @@ if version >= 700
   hi CursorLine cterm=none ctermfg=none ctermbg=DarkGrey
   hi CursorLineNr term=bold cterm=bold ctermfg=White ctermbg=DarkGrey
   hi! link CursorColumn	CursorLine
-  hi! link MatchParen CursorLine
+  hi! link MatchParen CursorLineNr
 
   hi TabLine cterm=none ctermfg=none ctermbg=Black
   hi TabLineFill cterm=none ctermfg=none ctermbg=Black
@@ -23,9 +23,9 @@ if version >= 700
   hi Pmenu cterm=none ctermfg=Grey ctermbg=DarkGrey
 endif
 
-hi Visual cterm=none ctermfg=none ctermbg=Black
+hi Visual cterm=none ctermfg=DarkGrey ctermbg=Cyan
 
-hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=Black
+hi LineNr cterm=bold ctermfg=Black ctermbg=Black
 hi Comment cterm=none ctermfg=Grey ctermbg=none
 hi Todo cterm=bold ctermfg=White ctermbg=Black
 
@@ -92,7 +92,8 @@ hi DiffText cterm=reverse ctermfg=Yellow ctermbg=none
 " PHP
 
 hi! link phpFunctions Function
-hi StorageClass cterm=none ctermfg=Red ctermbg=none
+"hi StorageClass cterm=none ctermfg=Red ctermbg=none
+hi! link StorageClass Type
 hi! link phpSuperglobal Identifier
 hi! link phpQuoteSingle StringDelimiter
 hi! link phpQuoteDouble StringDelimiter
@@ -140,7 +141,6 @@ hi! link luaOperator Conditional
 " C
 
 hi! link cOperator Constant
-hi! link cStorageClass Type 
 
 " Objective-C/Cocoa
 
