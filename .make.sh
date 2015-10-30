@@ -48,7 +48,7 @@ echo -ne "\n\n"
 cd "${HOME}"
 
 # Create $ABSDIROLD in $HOME
-#mkdir -pv "${ABSDIROLD}"
+mkdir -pv "${ABSDIROLD}"
 echo "'${ABSDIROLD}' created for backup."
 echo
 
@@ -62,15 +62,15 @@ for FILE in ${FILES[@]}; do
     # Move any existing dotfiles from $HOME to $ABSDIROLD
     if [[ -e "${HOME}/.${FILE}" ]]; then
         echo "'${HOME}/.${FILE}' exists"
-        echo "Moving: '.${FILE}' -> '${ABSDIROLD}/.${FILE}'"
-        # echo -n "Moving: "
-        # mv -v ".${FILE}" "${ABSDIROLD}"
+        echo -n "Moving: "
+        mv -v ".${FILE}" "${ABSDIROLD}"
+        # echo "'.${FILE}' -> '${ABSDIROLD}/.${FILE}'"
     fi
 
     # Create symlink to $FILE in $HOME
-    echo "Linking: '.${FILE}' -> '${DIR}/${FILE}'"
-    # echo -n "Linking: "
-    # ln -vs "${DIR}/${FILE}" ".${FILE}"
+    echo -n "Linking: "
+    ln -vs "${DIR}/${FILE}" ".${FILE}"
+    # echo "'.${FILE}' -> '${DIR}/${FILE}'"
     echo
 
 done
