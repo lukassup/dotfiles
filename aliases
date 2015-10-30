@@ -13,6 +13,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
     alias pacman='pacman --color=auto'
+    alias ip='ip -c'
 fi
 
 alias cp='cp -iv'
