@@ -22,7 +22,7 @@ set backupdir "~/.nano/backup"
 ## paragraphs.  They cannot contain blank characters.  Only closing
 ## punctuation, optionally followed by closing brackets, can end
 ## sentences.
-# set brackets ""')>]}"
+set brackets ""')>]}"
 
 ## Do case-sensitive searches by default.
 # set casesensitive
@@ -78,7 +78,7 @@ set morespace
 # set nonewlines
 
 ## Don't wrap text at all.
-set nowrap
+#set nowrap
 
 ## Set operating directory.  nano will not read or write files outside
 ## this directory and its subdirectories.  Also, the current directory
@@ -96,7 +96,7 @@ set poslog
 ## paragraphs.  They cannot contain blank characters.  Only closing
 ## punctuation, optionally followed by closing brackets, can end
 ## sentences.
-# set punct "!.?"
+set punct "!.?"
 
 ## Do quick statusbar blanking.  Statusbar messages will disappear after
 ## 1 keystroke instead of 26.  Note that "const" overrides this.
@@ -106,7 +106,7 @@ set poslog
 ## This is an extended regular expression if your system supports them,
 ## otherwise a literal string.
 ## If you have extended regular expression support, the default is:
-# set quotestr "^([ 	]*[#:>\|}])+"
+set quotestr "^([ 	]*[#:>\|}])+"
 ## Otherwise:
 # set quotestr "> "
 
@@ -148,9 +148,6 @@ set tabstospaces
 ## Save automatically on exit; don't prompt.
 # set tempfile
 
-## Disallow file modification.  Why would you want this in an rcfile? ;)
-# set view
-
 ## The two single-column characters used to display the first characters
 ## of tabs and spaces.  187 in ISO 8859-1 (0000BB in Unicode) and 183 in
 ## ISO-8859-1 (0000B7 in Unicode) seem to be good values for these.
@@ -163,13 +160,12 @@ set whitespace "»·"
 ## characters as parts of words.
 set wordbounds
 
-
 ## Paint the interface elements of nano.
 ## This is an example; by default there are no colors.
-set titlecolor black,brightwhite
+#set titlecolor black,brightwhite
 set statuscolor brightwhite,black
 set keycolor brightwhite
-set functioncolor brightblack
+set functioncolor white
 
 ## Setup of syntax coloring.
 ##

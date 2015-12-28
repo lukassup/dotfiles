@@ -83,25 +83,27 @@ key[PageDown]=${terminfo[knp]}
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
-function zle-line-init () {
-    echoti smkx
-}
-function zle-line-finish () {
-    echoti rmkx
-}
-zle -N zle-line-init
-zle -N zle-line-finish  
+#function zle-line-init () {
+#    echoti smkx
+#}
+#function zle-line-finish () {
+#    echoti rmkx
+#}
+#zle -N zle-line-init
+#zle -N zle-line-finish  
 
-if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
-    export TERM=xterm-256color
-fi
+#if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
+#    export TERM=xterm-256color
+#fi
 
 # zsh inline syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
+    . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # pkgfile command lookup
-source /usr/share/doc/pkgfile/command-not-found.zsh
+[ -e /usr/share/doc/pkgfile/command-not-found.zsh ] && \
+    . /usr/share/doc/pkgfile/command-not-found.zsh
 # Source aliases and user environment vars
-source ${HOME}/.aliases
+[ -e ${HOME}/.alias ] && . ${HOME}/.alias
 
 # More aliases
 alias bashrc='$EDITOR $HOME/.bashrc'

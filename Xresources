@@ -1,34 +1,53 @@
-! terminal colors
 
-! tangoesque scheme
-*background: #111111
-*foreground: #babdb6
-! Black (not tango) + DarkGrey
-*color0:  #000000
-*color8:  #555753
-! DarkRed + Red
-*color1:  #ff6565
-*color9:  #ff8d8d
-! DarkGreen + Green
-*color2:  #93d44f
-*color10: #c8e7a8
-! DarkYellow + Yellow
-*color3:  #eab93d
-*color11: #ffc123
-! DarkBlue + Blue
-*color4:  #204a87
-*color12: #3465a4
-! DarkMagenta + Magenta
-*color5:  #ce5c00
-*color13: #f57900
-!DarkCyan + Cyan (both not tango)
-*color6:  #89b6e2
-*color14: #46a4ff
-! LightGrey + White
-*color7:  #cccccc
-*color15: #ffffff
+! Base16 Default
+! Scheme: Chris Kempson (http://chriskempson.com)
+!#define base00 #2C3E50
+!#define base01 #34495E
+!#define base02 #7F8C8D
+!#define base03 #95A5A6
+!#define base04 #BDC3C7
+!#define base05 #e0e0e0
+!#define base06 #f5f5f5
+!#define base07 #ECF0F1
+!#define base08 #E74C3C
+!#define base09 #E67E22
+!#define base0A #F1C40F
+!#define base0B #2ECC71
+!#define base0C #1ABC9C
+!#define base0D #3498DB
+!#define base0E #9B59B6
+!#define base0F #be643c
+!
+!*.foreground:   base05
+!*.background:   base00
+!*.cursorColor:  base05
+!
+!*.color0:       base00
+!*.color1:       base08
+!*.color2:       base0B
+!*.color3:       base0A
+!*.color4:       base0D
+!*.color5:       base0E
+!*.color6:       base0C
+!*.color7:       base05
+!
+!*.color8:       base03
+!*.color9:       base08
+!*.color10:      base0B
+!*.color11:      base0A
+!*.color12:      base0D
+!*.color13:      base0E
+!*.color14:      base0C
+!*.color15:      base07
 
-! Xft settings
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+!*.color16:      base09
+!*.color17:      base0F
+!*.color18:      base01
+!*.color19:      base02
+!*.color20:      base04
+!*.color21:      base06
 
 Xft.dpi:        120
 Xft.antialias:  true
@@ -39,20 +58,409 @@ Xft.hintstyle:  hintslight
 ! xterm
 
 *xterm*termName: xterm-256color
-*xterm*faceName: Source Code Pro
-*xterm*faceSize: 12
-*xterm*VT100.geometry:     96x20
+*xterm*faceName: Office Code Pro
+*xterm*faceSize: 10
+*xterm*VT100.geometry:     96x16
 *xterm*dynamicColors:      true
 *xterm*utf8:               2
 *xterm*eightBitInput:      true
-*xterm*saveLines:          1024
+*xterm*saveLines:          8192
 *xterm*loginShell:         true
 *xterm*scrollKey:          true
 *xterm*scrollTtyOutput:    false
 *xterm*scrollBar:          true
 *xterm*rightScrollBar:     true
-*xterm*jumpScroll:         true
+*xterm*jumpScroll:         false
 *xterm*multiScroll:        true
 *xterm*toolBar:            false
 
-URxvt*termName: rxvt-unicode
+! URxvt
+
+URxvt.perl-ext-common: default,clipboard,matcher
+URxvt.matcher.button: 1  
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.clipboard.copycmd: xsel -ib
+URxvt.clipboard.pastecmd: xsel -ob
+URxvt.depth: 32
+
+! Compile xft: Attempt to find a visual with the given bit depth;
+! URxvt*depth: bitdepth
+
+! Compile xft: Turn on/off double-buffering for xft (default
+! URxvt*buffered: boolean
+
+! Create the window with the specified X window geometry [default
+URxvt*geometry: 96x12
+
+! Use the specified colour as the windows background colour [default
+URxvt*background: #242424
+
+! Use the specified colour as the windows foreground colour [default
+URxvt*foreground: #e0e0e0
+
+! Use the specified colour for the colour value n, where 0-7
+*color0: #000000
+*color1: #e74c3c
+*color2: #95e454
+*color3: #f1c40f
+*color4: #3498db
+*color5: #9b59b6
+*color6: #1abc9c
+*color7: #99968b
+*color8: #2d2d2d
+*color9: #e37769
+*color10: #cae682
+*color11: #f0c674
+*color12: #8ac6f2
+*color13: #b294bb
+*color14: #8abeb7
+*color15: #ecf0f1
+
+! URxvt*colorBD: colour
+
+! Use the specified colour to display bold or italic characters when
+! URxvt*colorIT: colour
+
+! Use the specified colour to display underlined characters when the
+! URxvt*colorUL: colour
+!
+! If set, use the specified colour as the colour for the underline
+! URxvt*underlineColor: colour
+
+! If set, use the specified colour as the background for highlighted
+! URxvt*highlightColor: colour
+
+! If set and highlightColor is set, use the specified colour as the
+! URxvt*highlightTextColor: colour
+
+! Use the specified colour for the cursor. The default is to use the
+URxvt*cursorColor: #656565
+
+! Use the specified colour for the colour of the cursor text. For
+! URxvt*cursorColor2: colour
+
+! True: simulate reverse video by foreground and background colours;
+! URxvt*reverseVideo: boolean
+
+! True: specify that jump scrolling should be used. When receiving
+! URxvt*jumpScroll: False
+
+! True: (the default) specify that skip scrolling should be used.
+! URxvt*skipScroll: False
+
+! Fade the text by the given percentage when focus is lost; option
+! URxvt*fading: number
+
+! Fade to this colour, when fading is used (see fading:). The default
+! URxvt*fadeColor: colour
+
+! Set the application icon pixmap; option -icon.
+! URxvt*iconFile: /usr/share/icons/Numix-Circle/48x48/apps/Terminal.svg
+
+! Use the specified colour for the scrollbar [default #B2B2B2].
+URxvt*scrollColor: #333333
+
+! Use the specified colour for the scrollbars trough area [default
+URxvt*troughColor: #656565
+
+! The colour of the border around the text area and between the
+! URxvt*borderColor: #333333
+
+! Select the fonts to be used. This is a comma separated list of font
+URxvt.font: xft:Office Code Pro:size=10
+URxvt.boldFont: xft:Office Code Pro::bold:size=10
+URxvt.italicFont: xft:Office Code Pro::italic:size=10
+URxvt.boldItalicFont: xft:Office Code Pro::bolditalic:size=10
+
+! When font styles are not enabled, or this option is enabled (True,
+! URxvt*intensityStyles: boolean
+
+! Set window title string, the default title is the command-line
+! URxvt*title: string
+
+! Set the name used to label the windows icon or displayed in an
+! URxvt*iconName: xterm-color
+
+! True: de-iconify (map) on receipt of a bell character. False: no
+! URxvt*mapAlert: boolean
+
+! True: set the urgency hint for the wm on receipt of a bell
+URxvt*urgentOnBell: True
+
+! True: use visual bell on receipt of a bell character; option -vb.
+URxvt*visualBell: False
+
+! True: start as a login shell by prepending a - to argv[0] of the
+URxvt*loginShell: True
+
+! Specify the maximum time in milliseconds between multi-click select
+! URxvt*multiClickTime: number
+
+! True: inhibit writing record into the system log file utmp; option
+! URxvt*utmpInhibit: boolean
+
+! Specify a command pipe for vt100 printer [default lpr(1)]. Use
+! URxvt*print-pipe: string
+
+! Set scrollbar style to rxvt, plain, next or xterm. plain is the
+URxvt*scrollstyle: plain
+
+! Set the scrollbar width in pixels.
+URxvt*thickness: 4
+
+! True: enable the scrollbar [default]; option -sb. False: disable
+URxvt*scrollBar: True
+
+! True: place the scrollbar on the right of the window; option -sr.
+URxvt*scrollBar_right: True
+
+! True: display an rxvt scrollbar without a trough; option -st.
+URxvt*scrollBar_floating: True
+
+! Align the top, bottom or centre [default] of the scrollbar thumb
+! URxvt*scrollBar_align: mode
+
+! True: scroll to bottom when tty receives output; option -si.
+URxvt*scrollTtyOutput: False
+
+! True: scroll with scrollback buffer when tty receives new lines
+URxvt*scrollWithBuffer: True
+
+! True: scroll to bottom when a non-special key is pressed. Special
+URxvt*scrollTtyKeypress: True
+
+! Save number lines in the scrollback buffer [default 64]. This
+URxvt*saveLines: 8192
+
+! Internal border of number pixels. This resource is limited to 100;
+URxvt*internalBorder: 0
+
+! External border of number pixels. This resource is limited to 100;
+URxvt*externalBorder: 0
+
+! Set MWM hints to request a borderless window, i.e. if honoured by
+! URxvt*borderLess: boolean
+
+! Compile frills: Disable the usage of the built-in block
+! URxvt*skipBuiltinGlyphs: boolean
+
+! Specifies the terminal type name to be set in the TERM environment
+! URxvt*termName: rxvt-unicode-256color
+
+! Specifies number of lines (pixel height) to insert between each row
+! URxvt*lineSpace: number
+URxvt*letterSpace: -1
+
+! True: handle Meta (Alt) + keypress to set the 8th bit. False:
+! URxvt*meta8: boolean
+
+! True: the mouse wheel scrolls a page full. False: the mouse wheel
+! URxvt*mouseWheelScrollPage: boolean
+
+! True: store tabs as wide characters. False: interpret tabs as
+! URxvt*pastableTabs: boolean
+
+! True: blink the cursor. False: do not blink the cursor [default];
+! URxvt*cursorBlink: boolean
+
+! True: Make the cursor underlined. False: Make the cursor a box
+! URxvt*cursorUnderline: boolean
+
+! True: blank the pointer when a key is pressed or after a set number
+! URxvt*pointerBlank: boolean
+
+! Mouse pointer foreground colour.
+! URxvt*pointerColor: colour
+
+! Mouse pointer background colour.
+! URxvt*pointerColor2: colour
+
+! Specifies number of seconds before blanking the pointer [default
+! URxvt*pointerBlankDelay: number
+
+! The string to send when the backspace key is pressed. If set to DEC
+! URxvt*backspacekey: string
+
+! The string to send when the delete key (not the keypad delete key)
+! URxvt*deletekey: string
+
+! The characters used as delimiters for double-click word selection
+! URxvt*cutchars: string
+
+! 
+! URxvt*{|}
+
+! OverTheSpot, OffTheSpot, Root; option -pt.
+! URxvt*preeditType: style
+
+! name of inputMethod to use; option -im.
+! URxvt*inputMethod: name
+
+! The locale to use for opening the IM. You can use an "LC_CTYPE" of
+! URxvt*imLocale: name
+
+! Specify the font-set used for XIM styles "OverTheSpot" or
+! URxvt*imFont: fontset
+
+! Change the meaning of triple-click selection with the left mouse
+! URxvt*tripleclickwords: boolean
+
+! Enables "insecure" mode. Rxvt-unicode offers some escape sequences
+! URxvt*insecure: boolean
+
+! Set the key to be interpreted as the Meta key to: alt, meta, hyper,
+! URxvt*modifier: modifier
+
+! Specify the reply rxvt-unicode sends to the shell when an ENQ
+! URxvt*answerbackString: string
+
+! Turn on/off secondary screen (default enabled).
+URxvt*secondaryScreen: True
+
+! Turn on/off secondary screen scroll (default enabled). If this
+URxvt*secondaryScroll: False
+
+! Turn on/off hold window after exit support. If enabled, urxvt will
+! URxvt*hold: boolean
+
+! Sets the working directory for the shell (or the command specified
+! URxvt*chdir: path
+
+! Compile frills: Associate action with keysym sym. The intervening
+! URxvt*keysym.sym: action
+
+! URxvt*perl-ext-common: string
+
+! Comma-separated list(s) of perl extension scripts (default:
+! URxvt*perl-ext: string
+
+! Perl code to be evaluated when all extensions have been registered.
+! URxvt*perl-eval: string
+
+! Colon-separated list of additional directories that hold extension
+! URxvt*perl-lib: path
+
+! Additional selection patterns, see the urxvtperl(3) manpage for
+! URxvt*selection.pattern-idx: perl-regex
+
+! Selection auto-transform patterns, see the urxvtperl(3) manpage for
+! URxvt*selection-autotransform.idx: perl-transform
+
+! This resource is deprecated and will be removed. Use a keysym
+! URxvt*searchable-scrollback: keysym *DEPRECATED*
+
+! Specifies the program to be started with a URL argument. Used by
+URxvt*url-launcher: firefox
+
+! Compile frills: Sets the WM_TRANSIENT_FOR property to the given
+! URxvt*transient-for: windowid
+
+! Compile frills: Sets override-redirect for the terminal window,
+! URxvt*override-redirect: boolean
+
+! Turn on/off ISO 14755 (default enabled).
+URxvt*iso14755: False
+
+! Turn on/off ISO 14755 5.2 mode (default enabled).
+URxvt*iso14755_52: False
+
+! Rofi launcher
+!
+
+rofi.key-run:                        mod4+r
+rofi.key-window:                     mod4+Tab
+! Enabled modi
+rofi.modi:                           window,run,ssh
+! Window opacity
+rofi.opacity:                        90
+! Window width
+rofi.width:                          100
+! Number of lines
+rofi.lines:                          3
+! Number of columns
+rofi.columns:                        1
+! Font to use
+rofi.font:                           Roboto 14
+
+! Use extended color scheme
+rofi.color-enabled:                  true
+! State,                             bg,      fg,      bgalt,   hlbg,    hlfg
+rofi.color-normal:                   #333333, #dddddd, #333333, #1794d1, #e0e0e0
+rofi.color-urgent:                   #3b3b3b, #1794d1, #3b3b3b, #1794d1, #e0e0e0
+rofi.color-active:                   #3b3b3b, #e0e0e0, #3b3b3b, #1794d1, #e0e0e0
+
+! Border color
+rofi.bc:                             #333333
+! Color scheme window
+rofi.color-window:                   #333333, #333333
+
+! Border width
+rofi.bw:                             0
+! Location on screen
+rofi.location:                       0
+! Padding
+rofi.padding:                        480
+! Y-offset relative to location
+rofi.yoffset:                        0
+! X-offset relative to location
+rofi.xoffset:                        0
+! Always show number of lines
+rofi.fixed-num-lines:                true
+! Terminal to use
+rofi.terminal:                       rofi-sensible-terminal
+! Ssh client to use
+rofi.ssh-client:                     ssh
+! Ssh command to execute
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+! Run command to execute
+rofi.run-command:                    {cmd}
+! Command to get extra run targets
+rofi.run-list-command:               
+! Run command to execute that runs in shell
+rofi.run-shell-command:              {terminal} -e {cmd}
+! Disable history in run/ssh
+rofi.disable-history:                false
+! Use levenshtein sorting
+rofi.levenshtein-sort:               false
+! Set case-sensitivity
+rofi.case-sensitive:                 false
+! Enable sidebar-mode
+rofi.sidebar-mode:                   false
+! Set lazy filter limit
+rofi.lazy-filter-limit:              15000
+! Row height (in chars)
+rofi.eh:                             2
+! Enable auto select mode
+rofi.auto-select:                    false
+! Parse hosts file for ssh mode
+rofi.parse-hosts:                    false
+! Parse known_hosts file for ssh mode
+rofi.parse-known-hosts:              true
+! Set the modi to combine in combi mode
+rofi.combi-modi:                     window,run
+! Do a more fuzzy matching
+rofi.fuzzy:                          false
+! Use glob matching
+rofi.glob:                           true
+! Tokenize input string
+rofi.tokenize:                       true
+! Monitor id to show on
+rofi.m:                              -1
+! Margin between rows
+rofi.line-margin:                    8
+! Pre-set filter
+rofi.filter:                         
+! Separator style (none, dash, solid)
+rofi.separator-style:                none
+! Hide scroll-bar
+rofi.hide-scrollbar:                 false
+! Show markup
+rofi.markup-rows:                    false
+! Fullscreen
+rofi.fullscreen:                     false
+! Fake transparency
+rofi.fake-transparency:              false
+! DPI
+rofi.dpi:                            -1
+
