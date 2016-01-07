@@ -2,6 +2,7 @@
 !   Color scheme
 !
 
+! Background / foreground
 #define Term_bg #1D1F21
 #define Term_fg #C5C8C6
 ! Black / Dark Grey
@@ -48,6 +49,10 @@
 *color14: Term_14
 *color15: Term_15
 
+!
+!   Xft settings
+!
+
 Xft.dpi:        120
 Xft.antialias:  true
 Xft.rgba:       rgb
@@ -80,8 +85,8 @@ Xft.hintstyle:  hintslight
 !
 
 ! Specifies the terminal type name to be set in the TERM environment
-!URxvt*termName: rxvt
-!URxvt*termName: rxvt-unicode-256color
+!URxvt.termName: rxvt
+!URxvt.termName: rxvt-unicode-256color
 
 URxvt.perl-ext-common: default,clipboard,matcher
 URxvt.matcher.button: 1  
@@ -90,36 +95,41 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.clipboard.copycmd: xsel -ib
 URxvt.clipboard.pastecmd: xsel -ob
 URxvt.depth: 32
-URxvt*saveLines: 8192
-URxvt*geometry: 96x12
-URxvt*internalBorder: 0
-URxvt*externalBorder: 0
+URxvt.saveLines: 8192
+URxvt.geometry: 96x12
+URxvt.internalBorder: 0
+URxvt.externalBorder: 0
 ! Specifies number of lines (pixel height) to insert between each row
-!URxvt*lineSpace: number
-URxvt*letterSpace: -1
+!URxvt.lineSpace: number
+URxvt.letterSpace: -1
 
 ! Set the scrollbar width in pixels.
-URxvt*thickness: 4
+URxvt.thickness: 4
 
-URxvt*scrollBar: True
-URxvt*scrollBar_right: True
-!URxvt*scrollBar_floating: True
-URxvt*scrollstyle: plain
-URxvt*scrollColor: Term_08
-URxvt*troughColor: Term_bg
-URxvt*scrollTtyOutput: False
-URxvt*scrollTtyKeypress: True
-URxvt*scrollWithBuffer: True
-URxvt*urgentOnBell: True
-URxvt*visualBell: False
-URxvt*loginShell: True
-!URxvt*cursorBlink: False
-!URxvt*cursorUnderline: True
+URxvt.scrollBar: True
+URxvt.scrollBar_right: True
+!URxvt.scrollBar_floating: True
+URxvt.scrollstyle: plain
+URxvt.scrollColor: Term_08
+URxvt.troughColor: Term_bg
+URxvt.scrollTtyOutput: False
+URxvt.scrollTtyKeypress: True
+URxvt.scrollWithBuffer: True
+URxvt.urgentOnBell: True
+URxvt.visualBell: False
+URxvt.loginShell: True
+!URxvt.cursorBlink: False
+!URxvt.cursorUnderline: True
+
+! Cursor color
+!URxvt*cursorColor: color
+! Cursor text color
+!URxvt*cursorColor2: color
 
 ! Turn on/off ISO 14755 (default enabled).
-URxvt*iso14755: False
+URxvt.iso14755: False
 ! Turn on/off ISO 14755 5.2 mode (default enabled).
-URxvt*iso14755_52: False
+URxvt.iso14755_52: False
 
 ! Select the fonts to be used. This is a comma separated list of font
 URxvt.font: xft:Office Code Pro:size=10
@@ -131,21 +141,21 @@ URxvt.boldItalicFont: xft:Office Code Pro::bolditalic:size=10
 URxvt.cutchars: "()*,<>[]{}|''"
 
 ! Turn on/off secondary screen (default enabled).
-URxvt*secondaryScreen: True
+URxvt.secondaryScreen: True
 ! Turn on/off secondary screen scroll (default enabled). If this
-URxvt*secondaryScroll: False
+URxvt.secondaryScroll: False
 
 ! Turn on/off hold window after exit support. If enabled, urxvt will
-! URxvt*hold: boolean
+URxvt.hold: True
 
 ! Compile frills: Associate action with keysym sym. The intervening
-! URxvt*keysym.sym: action
+!URxvt.keysym.sym: action
 
 ! Specifies the program to be started with a URL argument. Used by
-URxvt*url-launcher: /usr/bin/firefox
+URxvt.url-launcher: /usr/bin/firefox
 
 ! Compile frills: Sets the WM_TRANSIENT_FOR property to the given
-! URxvt*transient-for: windowid
+!URxvt.transient-for: windowid
 
 
 !
@@ -170,14 +180,14 @@ rofi.font:                           Roboto 14
 ! Use extended color scheme
 rofi.color-enabled:                  true
 ! State,                             bg,      fg,      bgalt,   hlbg,    hlfg
-rofi.color-normal:                   #333333, #dddddd, #333333, #1794d1, #e0e0e0
-rofi.color-urgent:                   #3b3b3b, #1794d1, #3b3b3b, #1794d1, #e0e0e0
-rofi.color-active:                   #3b3b3b, #e0e0e0, #3b3b3b, #1794d1, #e0e0e0
+rofi.color-normal:                   Term_bg, Term_07, Term_bg, Term_04, Term_15
+rofi.color-urgent:                   Term_08, Term_04, Term_08, Term_04, Term_15
+rofi.color-active:                   Term_08, Term_fg, Term_08, Term_04, Term_15
 
 ! Border color
-rofi.bc:                             #333333
+rofi.bc:                             Term_bg
 ! Color scheme window
-rofi.color-window:                   #333333, #333333
+rofi.color-window:                   Term_bg, Term_bg
 
 ! Border width
 rofi.bw:                             0
@@ -192,21 +202,22 @@ rofi.xoffset:                        0
 ! Always show number of lines
 rofi.fixed-num-lines:                true
 ! Terminal to use
-rofi.terminal:                       rofi-sensible-terminal
+!rofi.terminal:                       rofi-sensible-terminal
+rofi.terminal:                       urxvtc
 ! Ssh client to use
 rofi.ssh-client:                     ssh
 ! Ssh command to execute
-rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+rofi.ssh-command:                    {terminal} -e sh -c "{ssh-client} {host}"
 ! Run command to execute
 rofi.run-command:                    {cmd}
 ! Command to get extra run targets
-rofi.run-list-command:               
+!rofi.run-list-command:               
 ! Run command to execute that runs in shell
-rofi.run-shell-command:              {terminal} -e {cmd}
+rofi.run-shell-command:              {terminal} -e sh -c "{cmd}"
 ! Disable history in run/ssh
 rofi.disable-history:                false
 ! Use levenshtein sorting
-rofi.levenshtein-sort:               false
+rofi.levenshtein-sort:               true
 ! Set case-sensitivity
 rofi.case-sensitive:                 false
 ! Enable sidebar-mode
