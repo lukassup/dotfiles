@@ -33,6 +33,7 @@ alias vi='vim'
 alias vimrc='$EDITOR $HOME/.vimrc'
 
 export EDITOR="vim"
+export PAGER="less"
 export LESS="-RSC"
 #export BROWSER="firefox"
 
@@ -41,3 +42,5 @@ export LESS="-RSC"
 #export WINEARCH="win32"
 #export WINEDEBUG="-all"
 
+# Workaround for Jython cache permission issue
+#export JYTHON_OPTS="-Dpython.cachedir=$HOME/.jythoncache"

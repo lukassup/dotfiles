@@ -28,6 +28,8 @@ vnoremap <Up> gk
 
 " Toggle highlight
 nnoremap <F3> :set hlsearch!<CR>
+" Toggle NERDTree
+nnoremap <F4> :NERDTreeToggle<CR>
 
 " Quick pairs
 "imap <leader>' ''<ESC>i

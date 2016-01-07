@@ -12,9 +12,9 @@ shopt -s histverify
 shopt -s direxpand
 
 # Set the correct terminal type
-#if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" == "xfce4-terminal" ]; then
-#    export TERM=xterm-256color
-#fi
+if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" == "xfce4-terminal" ]; then
+    export TERM=xterm-256color
+fi
 
 # Prompt
 if [ ${UID} -eq 0 ]; then

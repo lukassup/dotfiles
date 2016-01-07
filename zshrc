@@ -2,36 +2,24 @@
 # ~/.zshrc
 #
 
-HISTFILE=$HOME/.zsh_history
-HISTSIZE=1024
-SAVEHIST=1024
-setopt \
-    auto_remove_slash \
-    autocd \
-    complete_aliases \
-    share_history \
-    inc_append_history \
-    hist_reduce_blanks \
-    hist_ignore_all_dups \
-    extended_glob
-unsetopt \
-    hist_ignore_space \
-    hist_beep \
-    list_beep \
-    beep
-bindkey -e
-
-zstyle :compinstall filename '$HOME/.zshrc'
+zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
+zstyle ':completion:*' completions 1
+zstyle ':completion:*' expand prefix
+zstyle ':completion:*' glob 1
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=* r:|=*' '' '+m:{[:lower:]}={[:upper:]}'
+zstyle ':completion:*' max-errors 1
+zstyle ':completion:*' preserve-prefix '//[^/]##/'
+zstyle ':completion:*' prompt 'Correcting %e error(s)'
+zstyle ':completion:*' select-prompt %SScrolling %p%s
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' substitute 1
 zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' rehash true
-#zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-zstyle -e ':completion:*:default' list-colors 'reply=("${PREFIX:+=(#bi)($PREFIX:t)(?)*==34=00}:${(s.:.)LS_COLORS}")'
-
-# Case insensitive menu completion
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle :compinstall filename '/home/lukas/.zshrc'
 
 # Group matches and describe.
-zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:*:*:*:*' menu select=3
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -39,7 +27,7 @@ zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
@@ -50,6 +38,38 @@ promptinit
 colors
 
 prompt custom
+
+HISTFILE=~/.zsh_history
+HISTSIZE=1024
+SAVEHIST=1024
+bindkey -e
+
+HISTFILE=$HOME/.zsh_history
+HISTSIZE=1024
+SAVEHIST=1024
+# use share_history instead of setopt APPEND_HISTORY         # appends history to .zsh_history
+setopt AUTO_CD                # cd if no matching command
+setopt AUTO_PARAM_SLASH       # adds slash at end of tabbed dirs
+setopt CHECK_JOBS             # check bg jobs on exit
+setopt CORRECT                # corrects spelling
+setopt CORRECT_ALL            # corrects spelling
+setopt EXTENDED_GLOB          # globs #, ~ and ^
+setopt EXTENDED_HISTORY       # saves timestamps on history
+setopt GLOB_DOTS              # find dotfiles easier
+setopt HASH_CMDS              # save cmd location to skip PATH lookup
+setopt HIST_EXPIRE_DUPS_FIRST # expire duped history first
+setopt HIST_NO_STORE          # don't save 'history' cmd in history
+setopt INC_APPEND_HISTORY     # append history as command are entered
+setopt LIST_ROWS_FIRST        # completion options left-to-right, top-to-bottom
+setopt LIST_TYPES             # show file types in list
+setopt MARK_DIRS              # adds slash to end of completed dirs
+setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
+setopt PROMPT_SUBST           # sub values in prompt (though it seems to work anyway haha)
+setopt RM_STAR_WAIT           # pause before confirming rm *
+setopt SHARE_HISTORY          # share history between open shells
+unsetopt BEEP
+unsetopt HIST_BEEP
+unsetopt LIST_BEEP
 
 bindkey ';5D' emacs-backward-word
 bindkey ';5C' emacs-forward-word
@@ -92,9 +112,9 @@ key[PageDown]=${terminfo[knp]}
 #zle -N zle-line-init
 #zle -N zle-line-finish  
 
-#if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
-#    export TERM=xterm-256color
-#fi
+if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
+    export TERM=xterm-256color
+fi
 
 # zsh inline syntax highlighting
 [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \

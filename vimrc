@@ -7,7 +7,7 @@ set nocompatible
 "source ~/.vim/noarrows.vim
 source ~/.vim/mappings.vim
 
-set fileformats=unix,dos,mac " Use UNIX as main file format
+set fileformats=unix,dos,mac
 set encoding=utf-8 fileencoding=utf-8 termencoding=utf-8
 set backupdir=$HOME/.vim/backup
 set directory=$HOME/.vim/swap
@@ -71,27 +71,18 @@ endif
 " *** Looks
 "
 
-set cursorline
+let g:hybrid_custom_term_colors = 1
+colorscheme hybrid
+set bg=dark
 set t_Co=16 " Use 16 color mode for speedier (WOOSH!) performance
-colorscheme wombat16
+set cursorline
 let &colorcolumn="80,".join(range(120,999),",")
 
 "
 " *** Status line
 "
 
-set statusline=%t[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
-"filename tail
-"file encoding
-"file format
-"help file flag
-"modified flag
-"read only flag
-"filetype
-"left/right separator
-"cursor column
-"cursor line/total lines
-"percent through file
+set statusline=%t%m%r[%c,%l/%L][%P]%h%=%y[%{strlen(&fenc)?&fenc:'none'},%{&ff}]
 
 "
 " *** Search
