@@ -100,7 +100,7 @@ URxvt.geometry: 96x12
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
 ! Specifies number of lines (pixel height) to insert between each row
-!URxvt.lineSpace: number
+!URxvt.lineSpace: 1
 URxvt.letterSpace: -1
 
 ! Set the scrollbar width in pixels.
@@ -132,10 +132,14 @@ URxvt.iso14755: False
 URxvt.iso14755_52: False
 
 ! Select the fonts to be used. This is a comma separated list of font
-URxvt.font: xft:Office Code Pro:size=10
-URxvt.boldFont: xft:Office Code Pro::bold:size=10
-URxvt.italicFont: xft:Office Code Pro::italic:size=10
-URxvt.boldItalicFont: xft:Office Code Pro::bolditalic:size=10
+!URxvt.font: xft:Office Code Pro:size=10
+!URxvt.boldFont: xft:Office Code Pro::bold:size=10
+!URxvt.italicFont: xft:Office Code Pro::italic:size=10
+!URxvt.boldItalicFont: xft:Office Code Pro::bolditalic:size=10
+URxvt.font: xft:MesloLGSDZ-Regular:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bold:hinting=true
+URxvt.italicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:italic:hinting=true
+URxvt.boldItalicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bolditalic:hinting=true
 
 ! The characters used as delimiters for double-click word selection
 URxvt.cutchars: "()*,<>[]{}|''"
@@ -146,7 +150,7 @@ URxvt.secondaryScreen: True
 URxvt.secondaryScroll: False
 
 ! Turn on/off hold window after exit support. If enabled, urxvt will
-URxvt.hold: True
+!URxvt.hold: False
 
 ! Compile frills: Associate action with keysym sym. The intervening
 !URxvt.keysym.sym: action
@@ -207,13 +211,13 @@ rofi.terminal:                       urxvtc
 ! Ssh client to use
 rofi.ssh-client:                     ssh
 ! Ssh command to execute
-rofi.ssh-command:                    {terminal} -e sh -c "{ssh-client} {host}"
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! Run command to execute
 rofi.run-command:                    {cmd}
 ! Command to get extra run targets
 !rofi.run-list-command:               
 ! Run command to execute that runs in shell
-rofi.run-shell-command:              {terminal} -e sh -c "{cmd}"
+rofi.run-shell-command:              {terminal} -e {cmd}
 ! Disable history in run/ssh
 rofi.disable-history:                false
 ! Use levenshtein sorting
