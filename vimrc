@@ -1,16 +1,22 @@
-"
-" ~/.vimrc
+""
+"   ~/.vimrc
 "
 
 " This must be set first!
 set nocompatible        " Use Vim settings instead of Vi. 
 
+source $HOME/.vim/mappings.vim
+"source $HOME/.vim/noarrows.vim
+
 "
-" *** Source files
+" *** Plugins
 "
 
-"source $HOME/.vim/noarrows.vim
-source $HOME/.vim/mappings.vim
+" UltiSnips
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 "
 " *** Files, Formats, History & Backup
@@ -82,6 +88,9 @@ colorscheme hybrid
 set background=dark
 set t_Co=16             " Use 16 color mode for performance
 let &colorcolumn="80,".join(range(120,999),",")
+" Enable italics if supported (usually optional)
+let &t_ZH = "\e[3m"
+let &t_ZR = "\e[23m"
 
 set ruler               " Show cursor position
 set showcmd             " Show current command as it is typed

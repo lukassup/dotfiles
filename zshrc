@@ -1,5 +1,5 @@
-#
-# ~/.zshrc
+##
+#   ~/.zshrc
 #
 
 zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
@@ -39,14 +39,11 @@ colors
 
 prompt custom
 
-HISTFILE=~/.zsh_history
-HISTSIZE=1024
-SAVEHIST=1024
-bindkey -e
-
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1024
 SAVEHIST=1024
+bindkey -v
+
 # use share_history instead of setopt APPEND_HISTORY         # appends history to .zsh_history
 setopt AUTO_CD                # cd if no matching command
 setopt AUTO_PARAM_SLASH       # adds slash at end of tabbed dirs
@@ -63,10 +60,10 @@ setopt INC_APPEND_HISTORY     # append history as command are entered
 setopt LIST_ROWS_FIRST        # completion options left-to-right, top-to-bottom
 setopt LIST_TYPES             # show file types in list
 setopt MARK_DIRS              # adds slash to end of completed dirs
-setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
-setopt PROMPT_SUBST           # sub values in prompt (though it seems to work anyway haha)
-setopt RM_STAR_WAIT           # pause before confirming rm *
 setopt SHARE_HISTORY          # share history between open shells
+#setopt PROMPT_SUBST           # sub values in prompt (though it seems to work anyway haha)
+#setopt RM_STAR_WAIT           # pause before confirming rm *
+#setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
 unsetopt BEEP
 unsetopt HIST_BEEP
 unsetopt LIST_BEEP
