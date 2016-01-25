@@ -14,12 +14,12 @@ zstyle ':completion:*' prompt 'Correcting %e error(s)'
 zstyle ':completion:*' select-prompt %SScrolling %p%s
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' substitute 1
-zstyle ':completion:*' insert-tab false
+#zstyle ':completion:*' insert-tab false
 zstyle ':completion:*' rehash true
 zstyle :compinstall filename '/home/lukas/.zshrc'
 
 # Group matches and describe.
-zstyle ':completion:*:*:*:*:*' menu select=3
+#zstyle ':completion:*:*:*:*:*' menu select=3
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
 zstyle ':completion:*:options' auto-description '%d'
@@ -30,19 +30,15 @@ zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 zstyle ':completion:*:default' list-prompt '%S%M matches%s'
 zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
-zstyle ':completion:*' verbose yes
+#zstyle ':completion:*' verbose yes
 
-autoload -Uz compinit promptinit colors
+autoload -Uz compinit
 compinit
-promptinit
-colors
-
-prompt custom
 
 HISTFILE=$HOME/.zsh_history
 HISTSIZE=1024
 SAVEHIST=1024
-bindkey -v
+bindkey -e
 
 # use share_history instead of setopt APPEND_HISTORY         # appends history to .zsh_history
 setopt AUTO_CD                # cd if no matching command
@@ -109,10 +105,6 @@ key[PageDown]=${terminfo[knp]}
 #zle -N zle-line-init
 #zle -N zle-line-finish  
 
-if [ -e /usr/share/terminfo/x/xterm-256color ] && [ "$COLORTERM" = "xfce4-terminal" ]; then
-    export TERM=xterm-256color
-fi
-
 # zsh inline syntax highlighting
 [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && \
     . /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -121,6 +113,17 @@ fi
     . /usr/share/doc/pkgfile/command-not-found.zsh
 # Source aliases and user environment vars
 [ -e ${HOME}/.alias ] && . ${HOME}/.alias
+
+# Prompt
+if [[ "$TERM" != "dumb" ]]; then
+    PS1='%(?..%F{7}[%f%B%?%b%F{7}]%f )'
+    PS1+='%B%(!.%F{1}.%F{reset})%n%f%b'
+    PS1+='%F{7}@%m %(!.#.$)%f '
+    export PS1
+    export RPROMPT="%F{7}%~%f"
+else
+    export PROMPT="%(?..[%?] )%n@%m:%~ %(!.#.$) "
+fi
 
 # More aliases
 alias bashrc='$EDITOR $HOME/.bashrc'

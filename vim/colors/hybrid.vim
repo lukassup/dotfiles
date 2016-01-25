@@ -242,7 +242,7 @@ else
 endif
 
 exe "hi! Normal"        .s:fg_foreground  .s:bg_normal      .s:fmt_none
-exe "hi! Comment"         .s:fg_comment     .s:bg_none        .s:fmt_none
+exe "hi! Comment"         .s:fg_comment     .s:bg_none        .s:fmt_ital
 exe "hi! Constant"        .s:fg_red         .s:bg_none        .s:fmt_none
 exe "hi! String"          .s:fg_green       .s:bg_none        .s:fmt_none
 exe "hi! Identifier"      .s:fg_purple      .s:bg_none        .s:fmt_none
