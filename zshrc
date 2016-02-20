@@ -112,7 +112,7 @@ key[PageDown]=${terminfo[knp]}
 [ -e /usr/share/doc/pkgfile/command-not-found.zsh ] && \
     . /usr/share/doc/pkgfile/command-not-found.zsh
 # Source aliases and user environment vars
-[ -e ${HOME}/.alias ] && . ${HOME}/.alias
+[ -e ${HOME}/.env.sh ] && . ${HOME}/.env.sh
 
 # Prompt
 if [[ "$TERM" != "dumb" ]]; then

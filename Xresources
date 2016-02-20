@@ -2,58 +2,61 @@
 !   Color scheme
 !
 
-! Background / foreground
-#define Term_bg #1D1F21
-#define Term_fg #C5C8C6
-! Black / Dark Grey
-#define Term_00 #282A2E
-#define Term_08 #373B41
-! Red / Bright
-#define Term_01 #A54242
-#define Term_09 #CC6666
-! Green / Bright
-#define Term_02 #8C9440
-#define Term_10 #B5BD68
-! Yellow / Bright
-#define Term_03 #DE935F
-#define Term_11 #F0C674
-! Blue / Bright
-#define Term_04 #5F819D
-#define Term_12 #81A2BE
-! Magenta / Bright
-#define Term_05 #85678F
-#define Term_13 #B294BB
-! Cyan / Bright
-#define Term_06 #5E8D87
-#define Term_14 #8ABEB7
-! Light Grey / White
-#define Term_07 #707880
-#define Term_15 #C5C8C6
+! Special colors
+#define Term_bg #2F343F
+#define Term_fg #D9E6F2
+#define Term_cu #D9E6F2
 
-*background: Term_bg
-*foreground: Term_fg
-*color0: Term_00
-*color1: Term_01
-*color2: Term_02
-*color3: Term_03
-*color4: Term_04
-*color5: Term_05
-*color6: Term_06
-*color8: Term_08
-*color7: Term_07
-*color9: Term_09
-*color10: Term_10
-*color11: Term_11
-*color12: Term_12
-*color13: Term_13
-*color14: Term_14
-*color15: Term_15
+! Black / Dark grey
+#define Term_00 #2C323C
+#define Term_08 #3C4452
+! Red / Bright red
+#define Term_01 #D0718C
+#define Term_09 #E9BDCA
+! Green / Bright green
+#define Term_02 #8CD071
+#define Term_10 #CAE9BD
+! Yellow / Bright yellow
+#define Term_03 #D0B571
+#define Term_11 #E9DDBD
+! Blue / Bright blue
+#define Term_04 #718CD0
+#define Term_12 #BDCAE9
+! Magenta / Bright mangenta
+#define Term_05 #B571D0
+#define Term_13 #DDBDE9
+! Cyan / Bright cyan
+#define Term_06 #71D0B5
+#define Term_14 #BDE9DD
+! Light grey / White
+#define Term_07 #7880A0
+#define Term_15 #E1EEFA
+
+*background:    Term_bg
+*foreground:    Term_fg
+*cursorColor:   Term_cu
+*color0:        Term_00
+*color1:        Term_01
+*color2:        Term_02
+*color3:        Term_03
+*color4:        Term_04
+*color5:        Term_05
+*color6:        Term_06
+*color8:        Term_08
+*color7:        Term_07
+*color9:        Term_09
+*color10:       Term_10
+*color11:       Term_11
+*color12:       Term_12
+*color13:       Term_13
+*color14:       Term_14
+*color15:       Term_15
 
 !
 !   Xft settings
 !
 
-Xft.dpi:        120
+Xft.dpi:        96
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
@@ -63,22 +66,22 @@ Xft.hintstyle:  hintslight
 !   xterm
 !
 
-*xterm*termName: xterm-256color
-*xterm*faceName: Office Code Pro
-*xterm*faceSize: 10
-*xterm*VT100.geometry:     96x12
-*xterm*dynamicColors:      true
-*xterm*utf8:               2
-*xterm*eightBitInput:      true
-*xterm*saveLines:          8192
-*xterm*loginShell:         true
-*xterm*scrollKey:          true
-*xterm*scrollTtyOutput:    false
-*xterm*scrollBar:          true
-*xterm*rightScrollBar:     true
-*xterm*jumpScroll:         false
-*xterm*multiScroll:        true
-*xterm*toolBar:            false
+*xterm*termName:            xterm-256color
+*xterm*faceName:            Roboto Mono
+*xterm*faceSize:            10
+*xterm*VT100.geometry:      96x12
+*xterm*dynamicColors:       true
+*xterm*utf8:                2
+*xterm*eightBitInput:       true
+*xterm*saveLines:           8192
+*xterm*loginShell:          true
+*xterm*scrollKey:           true
+*xterm*scrollTtyOutput:     false
+*xterm*scrollBar:           true
+*xterm*rightScrollBar:      true
+*xterm*jumpScroll:          false
+*xterm*multiScroll:         true
+*xterm*toolBar:             false
 
 !
 !   URxvt
@@ -99,7 +102,6 @@ URxvt.saveLines: 8192
 URxvt.geometry: 96x12
 URxvt.internalBorder: 0
 URxvt.externalBorder: 0
-! Specifies number of lines (pixel height) to insert between each row
 !URxvt.lineSpace: 1
 URxvt.letterSpace: -1
 
@@ -132,14 +134,14 @@ URxvt.iso14755: False
 URxvt.iso14755_52: False
 
 ! Select the fonts to be used. This is a comma separated list of font
-!URxvt.font: xft:Office Code Pro:size=10
-!URxvt.boldFont: xft:Office Code Pro::bold:size=10
-!URxvt.italicFont: xft:Office Code Pro::italic:size=10
-!URxvt.boldItalicFont: xft:Office Code Pro::bolditalic:size=10
-URxvt.font: xft:MesloLGSDZ-Regular:pixelsize=16:antialias=true:hinting=true
-URxvt.boldFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bold:hinting=true
-URxvt.italicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:italic:hinting=true
-URxvt.boldItalicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bolditalic:hinting=true
+!URxvt.font: xft:MesloLGSDZ-Regular:pixelsize=16:antialias=true:hinting=true
+!URxvt.boldFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bold:hinting=true
+!URxvt.italicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:italic:hinting=true
+!URxvt.boldItalicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bolditalic:hinting=true
+URxvt.font: xft:Roboto Mono:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:Roboto Mono:pixelsize=16:antialias=true:bold:hinting=true
+URxvt.italicFont: xft:Roboto Mono:pixelsize=16:antialias=true:italic:hinting=true
+URxvt.boldItalicFont: xft:Roboto Mono:pixelsize=16:antialias=true:bolditalic:hinting=true
 
 ! The characters used as delimiters for double-click word selection
 URxvt.cutchars: "()*,<>[]{}|''"

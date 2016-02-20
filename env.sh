@@ -1,6 +1,7 @@
+##
+#   ~/.env.sh
 #
-# ~/.env.sh
-#
+
 # Global aliases
 
 if [ -x /usr/bin/dircolors ]; then
@@ -12,8 +13,19 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
-    #alias pacman='pacman --color=auto'
-    #alias ip='ip -c'
+    alias pacman='pacman --color=auto'
+    alias ip='ip -c'
+    man() {
+
+        env LESS_TERMCAP_mb=$'\e[0m' \
+        LESS_TERMCAP_md=$'\e[1;37m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[7;93m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[3;94m' \
+        man "$@"
+    }
 fi
 
 alias cp='cp -iv'
@@ -28,19 +40,21 @@ alias la='ls -A'
 alias l='ls -CF'
 alias sudo='sudo '
 alias vi='vim'
-#alias pup='sudo pacman -Syu'
-#alias yup='yaourt -Syua'
-alias vimrc='$EDITOR $HOME/.vimrc'
+alias pup='sudo pacman -Syu'
+alias yup='pacaur -Syua'
+alias vimrc='$EDITOR $HOME/.vim/vimrc'
 
-export EDITOR="vim"
+export EDITOR="nvim"
 export PAGER="less"
 export LESS="-RSC"
-#export BROWSER="firefox"
+export BROWSER="firefox"
 
 # Wine settings
-#export WINEPREFIX="$HOME/Wine"
-#export WINEARCH="win32"
-#export WINEDEBUG="-all"
+export WINEPREFIX="$HOME/Wine"
+export WINEARCH="win32"
+export WINEDEBUG="-all"
 
 # Workaround for Jython cache permission issue
-#export JYTHON_OPTS="-Dpython.cachedir=$HOME/.jythoncache"
+export JYTHON_OPTS="-Dpython.cachedir=$HOME/.jythoncache"
+
+# vim: set ft=sh syn=sh:

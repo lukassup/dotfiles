@@ -1,0 +1,9 @@
+# Ignore everything in this directory
+/*
+
+# Except these
+!openbox/
+!mpv/
+!i3/
+!compton*conf
+!.gitignore

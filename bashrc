@@ -1,5 +1,5 @@
-#
-# ~/.bashrc
+##
+#   ~/.bashrc
 #
 
 # If not running interactively, don't do anything
@@ -28,7 +28,7 @@ fi
     . /usr/share/doc/pkgfile/command-not-found.bash
 
 # Source aliases and user environment vars
-[ -e ${HOME}/.alias ] && . ${HOME}/.alias
+[ -e ${HOME}/.env.sh ] && . ${HOME}/.env.sh
 
 # Some more aliases
 alias bashrc='$EDITOR $HOME/.bashrc && source $HOME/.bashrc'

@@ -10,26 +10,27 @@ nnoremap k gk
 vnoremap j gj
 vnoremap k gk
 nnoremap <Down> gj
-nnoremap <Up> gk
+nnoremap <Up>   gk
 vnoremap <Down> gj
-vnoremap <Up> gk
-"noremap  <Home> g<Home>
-"noremap  <End> g<End>
-"noremap  0 g0
-"noremap  $ g$
-
-" Proper movement even in insert mode
-" might break stuff!
-
-"inoremap <Up> <C-o>gk
-"inoremap <Down> <C-o>gj
-"inoremap <Home> <C-o>g<Home>
-"inoremap <End> <C-o>g<End>
+vnoremap <Up>   gk
+noremap  <Home> g<Home>
+noremap  <End>  g<End>
+noremap  0 g0
+noremap  $ g$
+" Easily move along wrapped lines in insert mode
+inoremap <Up>   <C-o>gk
+inoremap <Down> <C-o>gj
+inoremap <Home> <C-o>g<Home>
+inoremap <End>  <C-o>g<End>
 
 " Toggle highlight
 nnoremap <F3> :set hlsearch!<CR>
 " Toggle NERDTree
 nnoremap <F4> :NERDTreeToggle<CR>
+" Toggle comment lines
+nmap <C-_> <Leader>c<Space>
+imap <C-_> <C-C><Leader>c<Space>
+vmap <C-_> <Leader>c<Space>
 
 " Quick pairs
 "imap <leader>' ''<ESC>i

@@ -1,5 +1,5 @@
 ""
-"   ~/.vimrc
+"   ~/.vim/vimrc
 "
 
 " This must be set first!
@@ -12,11 +12,50 @@ source $HOME/.vim/mappings.vim
 " *** Plugins
 "
 
+call plug#begin('~/.vim/plugged')
+Plug 'w0ng/vim-hybrid'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'tpope/vim-surround'
+Plug 'ervandew/supertab'
+Plug 'tpope/vim-fugitive'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'scrooloose/syntastic'
+Plug 'michaeljsmith/vim-indent-object'
+Plug 'davidhalter/jedi-vim'
+Plug 'vim-latex/vim-latex', { 'for': 'latex' }
+" Docker
+Plug 'honza/dockerfile.vim'
+" Chef
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'tomtom/tlib_vim'
+"Plug 'garbas/vim-snipmate'
+"Plug 'vadv/vim-chef'
+call plug#end()
+
+" Vim Hybrid color scheme
+let g:hybrid_custom_term_colors = 1
+let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
+colorscheme hybrid
+set background=dark
+
 " UltiSnips
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+" IndentLine
+let g:indentLine_color_tty_light = 7
+let g:indentLine_color_dark = 1
+
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 "
 " *** Files, Formats, History & Backup
@@ -30,14 +69,9 @@ set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/undo
 set directory=$HOME/.vim/swap
 set fileformats=unix,dos,mac
-
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8
-  setglobal fileencoding=utf-8
-endif
+set encoding=utf-8
+set termencoding=utf-8
+set fileencoding=utf-8
 
 if has("vms")
     set nobackup            " Do not keep a backup file, use versions instead
@@ -87,7 +121,7 @@ let g:hybrid_custom_term_colors = 1
 colorscheme hybrid
 set background=dark
 set t_Co=16             " Use 16 color mode for performance
-let &colorcolumn="80,".join(range(120,999),",")
+"let &colorcolumn="80,".join(range(120,999),",")
 " Enable italics if supported (usually optional)
 let &t_ZH = "\e[3m"
 let &t_ZR = "\e[23m"
@@ -99,7 +133,7 @@ set showmatch           " Briefly display bracket pairs
 set number              " Display line numbers
 set mat=2               " Display matching brackets for 200ms
 "set mps+=<:>           " Match  angle brackets
-set cursorline
+"set cursorline
 set vb t_vb="
 set noerrorbells        " No sounds & bells
 set visualbell          " No sounds & bells
@@ -110,15 +144,23 @@ set wildmode=list:longest,full
 " *** Status line
 "
 
-set statusline=%t       " Filename
-set statusline+=%m      " Modified flag
-set statusline+=%r      " Read-only flag
-set statusline+=[%c,%l/%L] " File position [column, line/total]
-set statusline+=[%P]    " Percent in file
-set statusline+=%h      " Help section
-set statusline+=%=      " Separator
-set statusline+=%y      " File syntax
-set statusline+=[%{strlen(&fenc)?&fenc:'none'},%{&ff}] " File enconding & line endings
+set statusline=%t
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%m
+set statusline+=%r
+set statusline+=%h
+set statusline+=%w
+set statusline+=%y
+set statusline+=%{fugitive#statusline()}
+set statusline+=%=
+set statusline+=[
+set statusline+=%{strlen(&spl)?&spl:''},
+set statusline+=%{&ff},
+set statusline+=%{strlen(&fenc)?&fenc:'none'}
+set statusline+=]
+set statusline+=[%c,%l/%L\ %P]
 
 "
 " *** Search
@@ -143,6 +185,9 @@ endif
 " *** Advanced
 "
 
+set foldmethod=indent
+set foldlevel=99
+
 if has('mouse')
     set mouse=a         " Turn on mouse if supported
 endif
@@ -163,32 +208,32 @@ set pastetoggle=<F2> " Toggle paste mode
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+    au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
 
-  augroup END
+    augroup END
 
 else
 
-  set autoindent		" always set autoindenting on
+    set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
 

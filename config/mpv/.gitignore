@@ -1,0 +1,9 @@
+# Exclude all
+/*
+
+# Except these
+!input.conf
+!mpv.conf
+!lua-settings/osc.conf
+!scripts/*
+!.gitignore
