@@ -32,7 +32,14 @@ zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*' group-name ''
 #zstyle ':completion:*' verbose yes
 
-autoload -Uz compinit
+zstyle ':vcs_info:*' enable git
+#zstyle ':vcs_info:git*' formats '%s %f%r/%S %b %m%u%c '
+zstyle ':vcs_info:git*' formats '%F{white}%s:%f%u%c%b%f %m '
+zstyle ':vcs_info:git*' check-for-changes true
+zstyle ':vcs_info:git*' stagedstr '%F{green}'
+zstyle ':vcs_info:git*' unstagedstr '%F{yellow}'
+
+autoload -Uz compinit vcs_info
 compinit
 
 HISTFILE=$HOME/.zsh_history
@@ -57,7 +64,7 @@ setopt LIST_ROWS_FIRST        # completion options left-to-right, top-to-bottom
 setopt LIST_TYPES             # show file types in list
 setopt MARK_DIRS              # adds slash to end of completed dirs
 setopt SHARE_HISTORY          # share history between open shells
-#setopt PROMPT_SUBST           # sub values in prompt (though it seems to work anyway haha)
+setopt PROMPT_SUBST           # sub values in prompt (though it seems to work anyway haha)
 #setopt RM_STAR_WAIT           # pause before confirming rm *
 #setopt NUMERIC_GLOB_SORT      # sort numerically first, before alpha
 unsetopt BEEP
@@ -119,8 +126,9 @@ if [[ "$TERM" != "dumb" ]]; then
     PS1='%(?..%F{7}[%f%B%?%b%F{7}]%f )'
     PS1+='%B%(!.%F{1}.%F{reset})%n%f%b'
     PS1+='%F{7}@%m %(!.#.$)%f '
-    export PS1
-    export RPROMPT="%F{7}%~%f"
+    precmd() { vcs_info }
+    RPROMPT="\${vcs_info_msg_0_}%F{7}%~%f"
+    export PS1 RPROMPT
 else
     export PROMPT="%(?..[%?] )%n@%m:%~ %(!.#.$) "
 fi

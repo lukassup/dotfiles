@@ -56,7 +56,7 @@
 !   Xft settings
 !
 
-Xft.dpi:        96
+Xft.dpi:        120
 Xft.antialias:  true
 Xft.rgba:       rgb
 Xft.hinting:    true
@@ -89,7 +89,7 @@ Xft.hintstyle:  hintslight
 
 ! Specifies the terminal type name to be set in the TERM environment
 !URxvt.termName: rxvt
-!URxvt.termName: rxvt-unicode-256color
+URxvt.termName: rxvt-unicode-256color
 
 URxvt.perl-ext-common: default,clipboard,matcher
 URxvt.matcher.button: 1  

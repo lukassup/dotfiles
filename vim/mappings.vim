@@ -18,10 +18,10 @@ noremap  <End>  g<End>
 noremap  0 g0
 noremap  $ g$
 " Easily move along wrapped lines in insert mode
-inoremap <Up>   <C-o>gk
-inoremap <Down> <C-o>gj
-inoremap <Home> <C-o>g<Home>
-inoremap <End>  <C-o>g<End>
+"inoremap <Up>   <C-o>gk
+"inoremap <Down> <C-o>gj
+"inoremap <Home> <C-o>g<Home>
+"inoremap <End>  <C-o>g<End>
 
 " Toggle highlight
 nnoremap <F3> :set hlsearch!<CR>

@@ -15,11 +15,11 @@ light-locker \
 compton -b & # Compositor 
 tint2 & # Tint2 panel
 nm-applet & # Network manager
-firewalld-applet & # Network manager
+firewall-applet & # Network manager
 xfsettingsd & # Xfce settings daemon
 xfce4-volumed-pulse & # Xfce4 Volumed for PulseAudio
 rofi & # Rofi launcher
-pcmanfm -d --desktop --wallpaper-mode=fit -w $(ls -d /home/lukas/Pictures/wallpapers/* | shuf -n1) & # File manager
+pcmanfm -d --desktop --wallpaper-mode=crop -w $(ls -d /home/lukas/Pictures/wallpapers/* | shuf -n1) & # File manager
 urxvtd & # Terminal daemon
 (sleep 1s && xxkb) & # Keyboard layout switcher
 # feh --bg-fill $(ls -d /home/lukas/Pictures/wallpapers/* | shuf -n1) & # Wallpaper

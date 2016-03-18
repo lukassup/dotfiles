@@ -44,6 +44,7 @@ alias pup='sudo pacman -Syu'
 alias yup='pacaur -Syua'
 alias vimrc='$EDITOR $HOME/.vim/vimrc'
 
+export PATH="${HOME}/.gem/ruby/2.3.0/bin${PATH:+:${PATH}}"
 export EDITOR="nvim"
 export PAGER="less"
 export LESS="-RSC"
