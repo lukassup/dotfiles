@@ -34,7 +34,7 @@ zstyle ':completion:*' group-name ''
 
 zstyle ':vcs_info:*' enable git
 #zstyle ':vcs_info:git*' formats '%s %f%r/%S %b %m%u%c '
-zstyle ':vcs_info:git*' formats '%F{white}%s:%f%u%c%b%f %m '
+zstyle ':vcs_info:git*' formats '%F{white}%s:%f%u%c%b%f%m '
 zstyle ':vcs_info:git*' check-for-changes true
 zstyle ':vcs_info:git*' stagedstr '%F{green}'
 zstyle ':vcs_info:git*' unstagedstr '%F{yellow}'
