@@ -15,8 +15,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
     alias pacman='pacman --color=auto'
     alias ip='ip -c'
-    man() {
 
+    man() {
         env LESS_TERMCAP_mb=$'\e[0m' \
         LESS_TERMCAP_md=$'\e[1;37m' \
         LESS_TERMCAP_me=$'\e[0m' \
@@ -39,15 +39,19 @@ alias lll='ls -lAhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias sudo='sudo '
-alias vi='vim'
-alias pup='sudo pacman -Syu'
-alias yup='pacaur -Syua'
+alias vi='$EDITOR'
+alias vim='$EDITOR'
+alias pacur='sudo pacman -Syu'
+alias aurup='pacaur -Syu'
 alias vimrc='$EDITOR $HOME/.vim/vimrc'
 
-export PATH="${HOME}/.gem/ruby/2.3.0/bin${PATH:+:${PATH}}"
+RBPATH="${HOME}/.gem/ruby/2.3.0/bin"
+GOPATH="${HOME}/.go/bin"
+PYPATH="${HOME}/.local/bin"
+export PATH="${PYPATH}:${RBPATH}:${GOPATH}${PATH:+:${PATH}}"
 export EDITOR="nvim"
 export PAGER="less"
-export LESS="-RSC"
+export LESS="-RSCi"
 export BROWSER="firefox"
 
 # Wine settings

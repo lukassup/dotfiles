@@ -2,10 +2,11 @@
 !   Color scheme
 !
 
-! Special colors
+!! Special colors
 #define Term_bg #2F343F
 #define Term_fg #D9E6F2
-#define Term_cu #D9E6F2
+#define Term_cb #D9E6F2
+#define Term_cf #2F343F
 
 ! Black / Dark grey
 #define Term_00 #2C323C
@@ -34,7 +35,8 @@
 
 *background:    Term_bg
 *foreground:    Term_fg
-*cursorColor:   Term_cu
+*cursorColor:   Term_cb
+*cursorColor2:  Term_cf
 *color0:        Term_00
 *color1:        Term_01
 *color2:        Term_02
@@ -92,7 +94,7 @@ Xft.hintstyle:  hintslight
 URxvt.termName: rxvt-unicode-256color
 
 URxvt.perl-ext-common: default,clipboard,matcher
-URxvt.matcher.button: 1  
+URxvt.matcher.button: 1
 URxvt.keysym.Shift-Control-C: perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.clipboard.copycmd: xsel -ib
@@ -106,7 +108,7 @@ URxvt.externalBorder: 0
 URxvt.letterSpace: -1
 
 ! Set the scrollbar width in pixels.
-URxvt.thickness: 4
+URxvt.thickness: 8
 
 URxvt.scrollBar: True
 URxvt.scrollBar_right: True
@@ -124,9 +126,9 @@ URxvt.loginShell: True
 !URxvt.cursorUnderline: True
 
 ! Cursor color
-!URxvt*cursorColor: color
+URxvt*cursorColor: Term_cb
 ! Cursor text color
-!URxvt*cursorColor2: color
+URxvt*cursorColor2: Term_cf
 
 ! Turn on/off ISO 14755 (default enabled).
 URxvt.iso14755: False
@@ -134,14 +136,18 @@ URxvt.iso14755: False
 URxvt.iso14755_52: False
 
 ! Select the fonts to be used. This is a comma separated list of font
-!URxvt.font: xft:MesloLGSDZ-Regular:pixelsize=16:antialias=true:hinting=true
-!URxvt.boldFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bold:hinting=true
-!URxvt.italicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:italic:hinting=true
-!URxvt.boldItalicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bolditalic:hinting=true
-URxvt.font: xft:Roboto Mono:pixelsize=16:antialias=true:hinting=true
-URxvt.boldFont: xft:Roboto Mono:pixelsize=16:antialias=true:bold:hinting=true
-URxvt.italicFont: xft:Roboto Mono:pixelsize=16:antialias=true:italic:hinting=true
-URxvt.boldItalicFont: xft:Roboto Mono:pixelsize=16:antialias=true:bolditalic:hinting=true
+URxvt.font: xft:MesloLGSDZ-Regular:pixelsize=16:antialias=true:hinting=true
+URxvt.boldFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bold:hinting=true
+URxvt.italicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:italic:hinting=true
+URxvt.boldItalicFont: xft:MesloLGSDZ:pixelsize=16:antialias=true:bolditalic:hinting=true
+!URxvt.font: xft:Roboto Mono:pixelsize=16:antialias=true:hinting=true
+!URxvt.boldFont: xft:Roboto Mono:pixelsize=16:antialias=true:bold:hinting=true
+!URxvt.italicFont: xft:Roboto Mono:pixelsize=16:antialias=true:italic:hinting=true
+!URxvt.boldItalicFont: xft:Roboto Mono:pixelsize=16:antialias=true:bolditalic:hinting=true
+!URxvt.font: xft:Office Code Pro:pixelsize=17:antialias=true:hinting=true
+!URxvt.boldFont: xft:Office Code Pro:pixelsize=17:antialias=true:bold:hinting=true
+!URxvt.italicFont: xft:Office Code Pro:pixelsize=17:antialias=true:italic:hinting=true
+!URxvt.boldItalicFont: xft:Office Code Pro:pixelsize=17:antialias=true:bolditalic:hinting=true
 
 ! The characters used as delimiters for double-click word selection
 URxvt.cutchars: "()*,<>[]{}|''"
@@ -217,7 +223,7 @@ rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
 ! Run command to execute
 rofi.run-command:                    {cmd}
 ! Command to get extra run targets
-!rofi.run-list-command:               
+!rofi.run-list-command:
 ! Run command to execute that runs in shell
 rofi.run-shell-command:              {terminal} -e {cmd}
 ! Disable history in run/ssh
@@ -250,8 +256,6 @@ rofi.tokenize:                       true
 rofi.m:                              -1
 ! Margin between rows
 rofi.line-margin:                    8
-! Pre-set filter
-rofi.filter:                         
 ! Separator style (none, dash, solid)
 rofi.separator-style:                none
 ! Hide scroll-bar

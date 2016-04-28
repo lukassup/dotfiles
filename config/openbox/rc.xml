@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Arc-Darker</name>
+    <name>Arc-Darker-ob</name>
     <titleLayout>NLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -385,6 +385,16 @@
         <command>xfce4-screenshooter -r</command>
       </action>
     </keybind>
+    <keybind key="A-Print">
+      <action name="Execute">
+        <command>xfce4-screenshooter -w</command>
+      </action>
+    </keybind>
+    <keybind key="Print">
+      <action name="Execute">
+        <command>xfce4-screenshooter -f</command>
+      </action>
+    </keybind>
     <!-- Keybindings for running applications -->
     <keybind key="W-l">
       <action name="Execute">
@@ -393,6 +403,15 @@
           <name>Logout</name>
         </startupnotify>
         <command>oblogout</command>
+      </action>
+    </keybind>
+    <keybind key="W-r">
+      <action name="Execute">
+        <startupnotify>
+          <enabled>true</enabled>
+          <name>rofi</name>
+        </startupnotify>
+        <command>rofi -show run</command>
       </action>
     </keybind>
     <keybind key="W-e">
