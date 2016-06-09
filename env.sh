@@ -41,7 +41,7 @@ alias l='ls -CF'
 alias sudo='sudo '
 alias vi='$EDITOR'
 alias vim='$EDITOR'
-alias pacur='sudo pacman -Syu'
+alias pacup='sudo pacman -Syu'
 alias aurup='pacaur -Syu'
 alias vimrc='$EDITOR $HOME/.vim/vimrc'
 

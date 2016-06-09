@@ -5,72 +5,69 @@
 #
 # This script creates symlinks
 # to any dotfiles in $HOME
-##
+#
 
 # Variable definitions
 
 # The name of your dotfiles directory
-DIR="dotfiles"
+dir='dotfiles'
 # Absolute path
-ABSDIR="${HOME}/${DIR}"
+absdir="${HOME}/${dir}"
 # Absolute path for backups
-ABSDIROLD="${ABSDIR}_old"
+absdirold="${absdir}.old"
 
-cd "${ABSDIR}"
+cd "${absdir}"
 
 # Get files in $ABSDIR
-FILES+=(*)
+files+=(*)
 
 # Exlude list
-EXCLUDE=("README.md" "zsh")
+exclude=('README.md' 'zsh')
 
-for item in ${FILES[@]}; do
+for item in ${files[@]}; do
     echo -n "'${item}' "
 done
 
-echo -ne "\n\n"
+echo
 
-for x in ${!EXCLUDE[@]}; do
-    for y in ${!FILES[@]}; do
-        if [[ "${FILES[y]}" == "${EXCLUDE[x]}" ]]; then
-            echo "Unset: ${FILES[$y]}"
-            unset FILES[y]
-        fi
+for x in ${!exclude[@]}; do
+    for y in ${!files[@]}; do
+        [[ "${files[y]}" == "${exclude[x]}" ]] && unset files[y]
     done
 done
 
-for item in ${FILES[@]}; do
+for item in ${files[@]}; do
     echo -n "'${item}' "
 done
 
-echo -ne "\n\n"
+echo
 
-cd "${HOME}"
+cd "$HOME"
 
-# Create $ABSDIROLD in $HOME
-mkdir -pv "${ABSDIROLD}"
-echo "'${ABSDIROLD}' created for backup."
+# Create $absdirold in $HOME
+#mkdir -pv "${$absdirold}"
+echo "'${absdirold}' created for backup."
 echo
 
 # Move any existing dotfiles in $HOME
-# to $ABSDIROLD directory, then create
+# to $absdirold directory, then create
 # symlinks from $HOME to any files
-# in $ABSDIR directory specified in $FILES.
+# in $absdir directory specified in $FILES.
 
-for FILE in ${FILES[@]}; do
+for file in ${files[@]}; do
 
-    # Move any existing dotfiles from $HOME to $ABSDIROLD
-    if [[ -e "${HOME}/.${FILE}" ]]; then
-        echo "'${HOME}/.${FILE}' exists"
-        echo -n "Moving: "
-        mv -v ".${FILE}" "${ABSDIROLD}"
-        # echo "'.${FILE}' -> '${ABSDIROLD}/.${FILE}'"
+    # Move any existing dotfiles from $HOME to $absdirold
+    if [[ -e "${HOME}/.${file}" ]]; then
+        echo "'${HOME}/.${file}' exists"
+        echo -n 'Moving: '
+        #mv -v ".${file}" "${absdirold}"
+        echo "'.${file}' -> '${absdirold}/.${file}'"
     fi
 
     # Create symlink to $FILE in $HOME
-    echo -n "Linking: "
-    ln -vs "${DIR}/${FILE}" ".${FILE}"
-    # echo "'.${FILE}' -> '${DIR}/${FILE}'"
+    echo -n 'Linking: '
+    #ln -vs "${dir}/${file}" ".${file}"
+    echo "'.${file}' -> '${dir}/${file}'"
     echo
 
 done

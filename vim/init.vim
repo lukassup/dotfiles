@@ -2,7 +2,6 @@
 "   ~/.vim/init.vim
 "
 
-
 source $HOME/.vim/mappings.vim
 "source $HOME/.vim/noarrows.vim
 
@@ -10,8 +9,14 @@ source $HOME/.vim/mappings.vim
 " *** Plugins
 "
 
+" mkdir -p ~/.vim/autoload
+" curl -Ss https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.vim/autoload/plug.vim
+
 call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid'
+"Plug 'bling/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdcommenter'
@@ -24,20 +29,16 @@ Plug 'scrooloose/syntastic'
 Plug 'michaeljsmith/vim-indent-object'
 Plug 'davidhalter/jedi-vim'
 Plug 'vim-latex/vim-latex', { 'for': 'latex' }
-" Docker
 Plug 'honza/dockerfile.vim'
-" Chef
-"Plug 'MarcWeber/vim-addon-mw-utils'
-"Plug 'tomtom/tlib_vim'
-"Plug 'garbas/vim-snipmate'
-"Plug 'vadv/vim-chef'
 call plug#end()
 
-" Vim Hybrid color scheme
+" Theme + Airline
+" 16 colors (use term palette)
+let &t_Co = 16
 let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 " Remove this line if using the default palette.
-colorscheme hybrid
+let g:airline_theme='term'
 set background=dark
+colorscheme hybrid
 
 " IndentLine
 let g:indentLine_color_tty_light = 7
@@ -48,7 +49,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
-
 
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
@@ -87,12 +87,12 @@ set expandtab
 "
 " *** Wrapping & Editing behavior
 "
-"
+
 set wrap
 set linebreak
 " Display invisible characters.
 " Use the same symbols as TextMate for tabstops and EOLs
-if &termencoding == "utf-8"
+if &encoding == "utf-8"
     set listchars=tab:▸\ ,eol:¬
 else
     set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
@@ -109,12 +109,8 @@ set whichwrap+=<,>,h,l,[,]  " Move cursor through anything
 
 set shortmess+=I        " Don't display intro message
 syntax on               " Syntax highlighting
-let t_Co = 16           " Use 16 color mode for performance
-let &colorcolumn="80,".join(range(120,999),",")
-" Enable italics if supported (usually optional)
-let &t_ZH = "\e[3m"
-let &t_ZR = "\e[23m"
-
+"let &colorcolumn = "80,".join(range(120,999),",")
+let &colorcolumn = 80
 set ruler               " Show cursor position
 set showcmd             " Show current command as it is typed
 set showmatch           " Briefly display bracket pairs
@@ -196,9 +192,7 @@ if has("autocmd")
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
 
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
+    " Remember cursor position per file position
     autocmd BufReadPost *
         \ if line("'\"") >= 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
@@ -207,17 +201,15 @@ if has("autocmd")
     augroup END
 
 else
-
-    set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
+    set autoindent
+endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+        \ | wincmd p | diffthis
 endif
 
 if has('langmap') && exists('+langnoremap')
