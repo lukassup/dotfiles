@@ -5,7 +5,6 @@
 #
 # This script creates symlinks
 # to any dotfiles in $HOME
-#
 
 # Variable definitions
 
@@ -16,17 +15,17 @@ absdir="${HOME}/${dir}"
 # Absolute path for backups
 absdirold="${absdir}.old"
 
-cd "${absdir}"
+pushd "${absdir}"
 
 # Get files in $ABSDIR
 files+=(*)
 
 # Exlude list
-exclude=('README.md' 'zsh')
+exclude=('README.md')
 
-for item in ${files[@]}; do
-    echo -n "'${item}' "
-done
+# for item in ${files[@]}; do
+#     echo -n "'${item}' "
+# done
 
 echo
 
@@ -36,23 +35,19 @@ for x in ${!exclude[@]}; do
     done
 done
 
-for item in ${files[@]}; do
-    echo -n "'${item}' "
-done
-
-echo
+# for item in ${files[@]}; do
+#     echo -n "'${item}' "
+# done
 
 cd "$HOME"
 
 # Create $absdirold in $HOME
-#mkdir -pv "${$absdirold}"
+mkdir -pv "${$absdirold}"
 echo "'${absdirold}' created for backup."
 echo
 
-# Move any existing dotfiles in $HOME
-# to $absdirold directory, then create
-# symlinks from $HOME to any files
-# in $absdir directory specified in $FILES.
+# Move any existing dotfiles in $HOME to $absdirold directory, then create
+# symlinks from $HOME to any files in $absdir directory specified in $FILES.
 
 for file in ${files[@]}; do
 
@@ -60,14 +55,14 @@ for file in ${files[@]}; do
     if [[ -e "${HOME}/.${file}" ]]; then
         echo "'${HOME}/.${file}' exists"
         echo -n 'Moving: '
-        #mv -v ".${file}" "${absdirold}"
-        echo "'.${file}' -> '${absdirold}/.${file}'"
+        mv -v ".${file}" "${absdirold}"
+        # echo "'.${file}' -> '${absdirold}/.${file}'"
     fi
 
     # Create symlink to $FILE in $HOME
     echo -n 'Linking: '
-    #ln -vs "${dir}/${file}" ".${file}"
-    echo "'.${file}' -> '${dir}/${file}'"
+    ln -vs "${dir}/${file}" ".${file}"
+    # echo "'.${file}' -> '${dir}/${file}'"
     echo
 
 done
