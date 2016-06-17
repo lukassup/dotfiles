@@ -16,27 +16,28 @@ call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid'
 "Plug 'bling/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Yggdroot/indentLine'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ervandew/supertab'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'scrooloose/syntastic'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'nvie/vim-flake8', { 'for': 'python' }
+"Plug 'vim-latex/vim-latex', { 'for': 'latex' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'davidhalter/jedi-vim'
-Plug 'vim-latex/vim-latex', { 'for': 'latex' }
 Plug 'honza/dockerfile.vim'
+Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
 call plug#end()
 
 " Theme + Airline
 " 16 colors (use term palette)
 let &t_Co = 16
 let g:hybrid_custom_term_colors = 1
-let g:airline_theme='term'
+"let g:airline_theme='term'
 set background=dark
 colorscheme hybrid
 
@@ -93,7 +94,7 @@ set linebreak
 " Display invisible characters.
 " Use the same symbols as TextMate for tabstops and EOLs
 if &encoding == "utf-8"
-    set listchars=tab:▸\ ,eol:¬
+    set listchars=tab:▸\ ,eol:¬,trail:·
 else
     set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 endif

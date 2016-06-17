@@ -12,23 +12,28 @@ source $HOME/.vim/mappings.vim
 " *** Plugins
 "
 
+" mkdir -p ~/.vim/autoload
+" curl -Ss https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.vim/autoload/plug.vim
+
 call plug#begin('~/.vim/plugged')
 Plug 'w0ng/vim-hybrid'
 "Plug 'bling/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Yggdroot/indentLine'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'ervandew/supertab'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'scrooloose/syntastic'
+"Plug 'davidhalter/jedi-vim'
+"Plug 'nvie/vim-flake8', { 'for': 'python' }
+"Plug 'vim-latex/vim-latex', { 'for': 'latex' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
-Plug 'ervandew/supertab'
 Plug 'tpope/vim-fugitive'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/syntastic'
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'davidhalter/jedi-vim'
-Plug 'vim-latex/vim-latex', { 'for': 'latex' }
 Plug 'honza/dockerfile.vim'
+Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
 call plug#end()
 
 " Theme + Airline
