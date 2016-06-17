@@ -2,6 +2,7 @@
 /*
 
 # Except these
+!nvim/
 !openbox/
 !mpv/
 !i3/

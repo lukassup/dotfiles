@@ -42,7 +42,7 @@ done
 cd "$HOME"
 
 # Create $absdirold in $HOME
-mkdir -pv "${$absdirold}"
+mkdir -pv "${absdirold}"
 echo "'${absdirold}' created for backup."
 echo
 
