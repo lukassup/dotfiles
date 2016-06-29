@@ -2,8 +2,9 @@
 "   ~/.vim/vimrc
 "
 
-" This must be set first!
-set nocompatible        " Use Vim settings instead of Vi
+if !has("nvim")
+  set nocompatible " This must be set first!
+endif
 
 source $HOME/.vim/mappings.vim
 "source $HOME/.vim/noarrows.vim
@@ -12,35 +13,57 @@ source $HOME/.vim/mappings.vim
 " *** Plugins
 "
 
-" mkdir -p ~/.vim/autoload
-" curl -Ss https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim -o ~/.vim/autoload/plug.vim
+" Get vim-plug:
+" $ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/plugged')
+
+" Visual aids and theme
 Plug 'w0ng/vim-hybrid'
-"Plug 'bling/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
-"Plug 'ctrlpvim/ctrlp.vim'
-"Plug 'ervandew/supertab'
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-"Plug 'scrooloose/syntastic'
-"Plug 'davidhalter/jedi-vim'
-"Plug 'nvie/vim-flake8', { 'for': 'python' }
-"Plug 'vim-latex/vim-latex', { 'for': 'latex' }
-Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-fugitive'
+
+" Additional text objects
 Plug 'michaeljsmith/vim-indent-object'
-Plug 'honza/dockerfile.vim'
-Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
+Plug 'tpope/vim-surround'
+
+" Comment anything
+Plug 'scrooloose/nerdcommenter'
+
+" Additional syntax
+"Plug 'honza/dockerfile.vim'
+"Plug 'git://fedorapeople.org/home/fedora/wwoods/public_git/vim-scripts.git'
+
+" Git integration
+Plug 'tpope/vim-fugitive'
+
+" Fuzzy finder
+Plug 'ctrlpvim/ctrlp.vim'
+
+" Tab completion in insert mode
+Plug 'ervandew/supertab'
+
+" Linters/style checkers
+Plug 'scrooloose/syntastic'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8', { 'for': 'python' }
+"Plug 'vim-latex/vim-latex', { 'for': 'latex' }
+
+" Snippets: Vim 7.4+ / neovim
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+
+" Snippets: Vim < 7.4
+"Plug 'MarcWeber/vim-addon-mw-utils'
+"Plug 'tomtom/tlib_vim'
+"Plug 'garbas/vim-snipmate' | Plug 'honza/vim-snippets'
+
 call plug#end()
 
-" Theme + Airline
+" Theme
 " 16 colors (use term palette)
 let &t_Co = 16
 let g:hybrid_custom_term_colors = 1
-"let g:airline_theme='term'
 set background=dark
 colorscheme hybrid
 
@@ -59,22 +82,25 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_ruby_checker = ['rubocop']   " use rubocop
 
 "
 " *** Files, Formats, History & Backup
 "
 
-"set autochdir           " Auto cd to current file
-set autoread            " Auto read external changes
-set history=256
+if !has("nvim")
+  "set autochdir           " auto change dir to current file
+  set autoread            " auto read external changes
+  set history=256
+  set fileformats=unix,dos,mac
+endif
 set wildignore=.svn,CVS,*.o,*.a,*.class,*.mo,*.la,*.so,*.obj,*.swp,*.jpg,*.png,*.xpm,*.gif
 set backupdir=$HOME/.vim/backup
 set undodir=$HOME/.vim/undo
 set directory=$HOME/.vim/swap
-set fileformats=unix,dos,mac
-set encoding=utf-8
 set termencoding=utf-8
 set fileencoding=utf-8
+set encoding=utf-8
 
 if has("vms")
     set nobackup            " Do not keep a backup file, use versions instead
@@ -90,19 +116,21 @@ endif
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
-set smarttab
 set expandtab
+if !has("nvim")
+  set smarttab
+endif
 
 "
 " *** Wrapping & Editing behavior
 "
-"
+
 set wrap
 set linebreak
-" Display invisible characters.
-" Use the same symbols as TextMate for tabstops and EOLs
-if &termencoding == "utf-8"
-    set listchars=tab:▸\ ,eol:¬
+if ( has('nvim') && &encoding == "utf-8" ) || &termencoding == "utf-8"
+  " Display invisible characters.
+  " Use the same symbols as TextMate for tabstops and EOLs
+    set listchars=tab:▸\ ,eol:¬,trail:·
 else
     set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 endif
@@ -110,8 +138,11 @@ endif
 set nolist
 set textwidth=0
 set hidden                  " Hide empty buffers instead of closing
-set backspace=indent,eol,start " Backspace over everything in insert mode
 set whichwrap+=<,>,h,l,[,]  " Move cursor through anything
+if !has('nvim')
+  " Backspace over everything in insert mode
+  set backspace=indent,eol,start
+endif
 
 "
 " *** Syntax & Looks
@@ -119,12 +150,10 @@ set whichwrap+=<,>,h,l,[,]  " Move cursor through anything
 
 set shortmess+=I        " Don't display intro message
 syntax on               " Syntax highlighting
-"let &colorcolumn="80,".join(range(120,999),",")
-let &colorcolumn=80     " faster
-
+"let &colorcolumn = "80,".join(range(120,999),",")
+let &colorcolumn = 80
 set ruler               " Show cursor position
 set showcmd             " Show current command as it is typed
-set laststatus=2        " Show statusbar
 set showmatch           " Briefly display bracket pairs
 set number              " Display line numbers
 set mat=2               " Display matching brackets for 200ms
@@ -133,8 +162,11 @@ set cursorline
 set vb t_vb="
 set noerrorbells        " No sounds & bells
 set visualbell          " No sounds & bells
-set wildmenu            " Use autocompletion menu
 set wildmode=list:longest,full
+if !has("nvim")
+  set wildmenu            " Use autocompletion menu
+  set laststatus=2        " Show statusbar
+endif
 
 "
 " *** Status line
@@ -143,7 +175,7 @@ set wildmode=list:longest,full
 set statusline=%t
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+set statusline+=%*\ 
 set statusline+=%m
 set statusline+=%r
 set statusline+=%h
@@ -162,11 +194,13 @@ set statusline+=[%c,%l/%L\ %P]
 " *** Search
 "
 
-set incsearch           " Search as you type
 set ignorecase          " Case insensitive search
 set smartcase           " Unless search term is in specific case
 set gdefault            " g/ flag for replace by default
-set hlsearch!           " Don't highlight anything until searched
+if !has("nvim")
+  set incsearch           " Search as you type
+  set hlsearch!           " Don't highlight anything until searched
+endif
 
 "
 " *** Spelling
@@ -178,24 +212,42 @@ if version >= 700
 endif
 
 "
-" *** Advanced
+" *** Folding
 "
 
 set foldmethod=indent
 set foldlevel=99
 
-if has('mouse')
-    set mouse=a         " Turn on mouse if supported
-endif
+"
+" *** Clibpboard
+"
 
+if has('nvim')
 
-if has('xterm_clipboard')
-    set clipboard=unnamedplus " Use X clipboard if supported
-elseif has('clipboard')
+  " Use X clipboard
+  set clipboard+=unnamedplus 
+
+else
+
+  if has('mouse')
+    " Turn on mouse if supported
+    set mouse=a
+  endif
+
+  if has('xterm_clipboard')
+    " Use X clipboard if supported
+    set clipboard=unnamedplus 
+  elseif has('clipboard')
     set clipboard=unnamed
+  endif
+
 endif
 
 set pastetoggle=<F2> " Toggle paste mode
+
+"
+" *** Misc
+"
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -217,9 +269,7 @@ if has("autocmd")
     " For all text files set 'textwidth' to 78 characters.
     autocmd FileType text setlocal textwidth=78
 
-    " When editing a file, always jump to the last known cursor position.
-    " Don't do it when the position is invalid or when inside an event handler
-    " (happens when dropping a file on gvim).
+    " Remember cursor position per file position
     autocmd BufReadPost *
         \ if line("'\"") >= 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
@@ -228,10 +278,8 @@ if has("autocmd")
     augroup END
 
 else
-
-    set autoindent		" always set autoindenting on
-
-endif " has("autocmd")
+    set autoindent
+endif
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.

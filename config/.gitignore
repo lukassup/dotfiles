@@ -2,7 +2,7 @@
 /*
 
 # Except these
-!nvim/
+!nvim
 !openbox/
 !mpv/
 !i3/
